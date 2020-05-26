@@ -21,8 +21,8 @@ module.exports = {
         name: `dictybase-deployment`,
         short_name: `deploy`,
         start_url: `/`,
-        background_color: `rgb(0, 64, 128);`,
-        theme_color: `rgb(0, 64, 128);`,
+        background_color: `rgb(0, 64, 128)`,
+        theme_color: `rgb(0, 64, 128)`,
         display: `minimal-ui`,
         // icon: `src/images/dicty-logo.png`, // This path is relative to the root of the site.
       },
