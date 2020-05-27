@@ -31,5 +31,5 @@ $_> kubectl get sc
 ##### Note
 
 This storage class will be used globally by all of our applications, so if
-another name is used(other than `fast`), make sure to configure the application
+another name is used (other than `fast`), make sure to configure the application
 accordingly.

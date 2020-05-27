@@ -8,7 +8,7 @@ title: "Ingress"
 manages external access to services in kubernetes cluster. To configure ingress access we need to install
 
 - nginx-controller
-- [cert-manager](certificate.md) for https access
+- [cert-manager](/certificate) for https access
 - ingress manifests for opening up services
 
 ## Install nginx controller
@@ -18,7 +18,7 @@ manages external access to services in kubernetes cluster. To configure ingress 
 Make sure you update (`helm repo update`) and check the name of
 the registered default helm repository (`helm repo list`).
 
-![](userinput.png)
+![](./userinput.png)
 
 > `$_> helm install stable/nginx-ingress --name nginx-ingress --version 1.6.8`
 

@@ -6,15 +6,15 @@ title: "ArangoDB"
 
 - Have a `configured (kubectl access)`
   [GKE](https://cloud.google.com/kubernetes-engine/) access.
-- [Setup](admin.md) cluster admin access.
-- [Setup](storageclass.md) custom storage class to use `SSD` disk.
+- [Setup](/admin) cluster admin access.
+- [Setup](/storageclass) custom storage class to use `SSD` disk.
 - This guide assumes only one ArangoDB server instance for each cluster.
 
 ## Fresh Install
 
 ### ArangoDB custom resource definition (CRD)
 
-> **version: 0.3.11**`
+> **version: 0.3.11**
 
 Install two charts, a `CRD` and `deployment controller`.
 
@@ -23,7 +23,7 @@ Install two charts, a `CRD` and `deployment controller`.
 >  `--set=DeploymentReplication.Create=false --namespace dictybase`
 
 In the second step we are disabling deployment replication. For details look
-[here](https://github.com/arangodb/kube-arangodb/blob/0.3.11/docs/Manual/Deployment/Kubernetes/Helm.md)
+[here](https://github.com/arangodb/kube-arangodb/blob/0.3.11/docs/Manual/Deployment/Kubernetes/Helm.md).
 
 ### Install arangodb server (single deployment)
 
@@ -32,7 +32,7 @@ In the second step we are disabling deployment replication. For details look
 >  `--set arangodb.dbservers.storageClass=fast \`  
 >  `--set arangodb.single.storage=50Gi`
 
-Here we are using the custom [storage class](storageclass.md) and have also
+Here we are using the custom [storage class](/storageclass) and have also
 set up the storage space. ArangoDB version `3.3.23` is also installed by
 default. To see what else you can customize, check out the chart
 [README](https://github.com/dictybase-docker/kubernetes-charts/tree/master/arangodb).
