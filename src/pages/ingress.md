@@ -2,8 +2,6 @@
 title: "Ingress"
 ---
 
-# HTTPs Ingress
-
 [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/#what-is-ingress)
 manages external access to services in kubernetes cluster. To configure ingress access we need to install
 
@@ -20,7 +18,9 @@ the registered default helm repository (`helm repo list`).
 
 ![](./userinput.png)
 
-> `$_> helm install stable/nginx-ingress --name nginx-ingress --version 1.6.8`
+```shell
+helm install stable/nginx-ingress --name nginx-ingress --version 1.6.8
+```
 
 ## Deploy ingress manifests
 
