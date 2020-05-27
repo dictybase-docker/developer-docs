@@ -3,6 +3,7 @@ module.exports = {
     title: `dictyBase Deployment Documentation`,
     description: `All documentation related to deploying dictyBase software.`,
   },
+  pathPrefix: `/developer-docs`,
   plugins: [
     `gatsby-plugin-react-helmet`,
     {
