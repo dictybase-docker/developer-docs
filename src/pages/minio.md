@@ -1,8 +1,6 @@
 ---
-title: "Minio"
+title: "S3 compatible object storage - Minio"
 ---
-
-# S3 compatible object storage - minio
 
 > Chart version [https://hub.helm.sh/charts/stable/minio/2.4.14](2.4.14)
 
@@ -13,7 +11,7 @@ The following features will be enabled(used)
 - Default bucket
 - Ingress enabled for web access
 
-Yaml configuration file for helm (using `eric` as an example for the dev domain)
+YAML configuration file for helm (using `eric` as an example for the dev domain)
 
 ```yaml
 mode: standalone
@@ -46,6 +44,6 @@ ingress:
         - ericstorage.dictybase.dev # change this
 ```
 
-![](userinput.png)
+![](./userinput.png)
 
 > `$_> helm install kubernetes-charts/minio --version 2.4.14 -f config.yaml -n minio --namespace dictybase`

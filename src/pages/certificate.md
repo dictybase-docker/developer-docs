@@ -55,7 +55,7 @@ spec:
     http01: {}
 ```
 
-![](userinput.png)
+![](./userinput.png)
 
 > `$_> kubectl apply -f issuer.yml`
 
@@ -96,6 +96,6 @@ spec:
           - erictoken.dictybase.dev
 ```
 
-![](userinput.png)
+![](./userinput.png)
 
 > `$_> kubectl apply -f certificate.yaml`

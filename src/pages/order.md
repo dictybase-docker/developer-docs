@@ -2,15 +2,13 @@
 title: "Suggested Order"
 ---
 
-# Suggested Order
-
 1. Helm
    - create rbac
    - initialize w/ tiller
    - add dictybase helm repo
-   - create [admin](admin.md) clusterrolebinding
+   - create [admin](/admin) clusterrolebinding
    - create nats clusterrolebinding
-2. [Create custom storage class using SSD](storageclass.md)
+2. [Create custom storage class using SSD](/storageclass)
 3. Install Nats
    - nats-operator
    - nats
@@ -19,19 +17,19 @@ title: "Suggested Order"
 6. Install PostgreSQL
    - install dictycontent-schema
    - install dictyuser-schema
-7. [Install Ingress](ingress.md)
+7. [Install Ingress](/ingress)
    - install nginx-controller
    - install cert-manager
    - create issuer and certificate
    - install dictybase-auth-ingress
    - install dictybase-ingress
-8. [Install Minio](minio.md)
-9. [Install ArangoDB](arangodb.md)
+8. [Install Minio](/minio)
+9. [Install ArangoDB](/arangodb)
    - install kube-arangodb-crd
    - install kube-arangodb
    - install dictybase/arangodb
    - install dictybase/arango-create-database
-10. [Install Argo](argoevents.md)
+10. [Install Argo](/argoevents)
     - create argo namespace
     - add argo helm repo
     - create issuer and certificate
