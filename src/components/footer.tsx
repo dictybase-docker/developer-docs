@@ -1,10 +1,10 @@
 import React from "react"
 
 const Footer = () => (
-  <header
+  <footer
     style={{
       background: `rgb(0, 64, 128)`,
-      marginBottom: `1.45rem`,
+      textAlign: "center",
     }}>
     <div
       style={{
@@ -12,11 +12,15 @@ const Footer = () => (
         maxWidth: 960,
         padding: `1.45rem 1.0875rem`,
       }}>
-      <h5 style={{ margin: 0, color: "#fff" }}>
+      <h5
+        style={{
+          margin: 0,
+          color: "#fff",
+        }}>
         © {new Date().getFullYear()} dictyBase
       </h5>
     </div>
-  </header>
+  </footer>
 )
 
 export default Footer
