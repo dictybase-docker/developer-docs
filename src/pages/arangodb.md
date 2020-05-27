@@ -14,7 +14,7 @@ title: "ArangoDB"
 
 ### ArangoDB custom resource definition (CRD)
 
-> **version: 0.3.11**
+_version: 0.3.11_
 
 Install two charts, a `CRD` and `deployment controller`.
 

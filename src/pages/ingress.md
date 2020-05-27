@@ -11,7 +11,7 @@ manages external access to services in kubernetes cluster. To configure ingress 
 
 ## Install nginx controller
 
-> Chart version [1.6.8](https://hub.helm.sh/charts/stable/nginx-ingress/1.6.8)
+_Chart version [1.6.8](https://hub.helm.sh/charts/stable/nginx-ingress/1.6.8)_
 
 Make sure you update (`helm repo update`) and check the name of
 the registered default helm repository (`helm repo list`).
