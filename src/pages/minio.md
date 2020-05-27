@@ -1,8 +1,8 @@
 ---
-title: "S3 compatible object storage - Minio"
+title: "Minio (S3)"
 ---
 
-> Chart version [https://hub.helm.sh/charts/stable/minio/2.4.14](2.4.14)
+_Chart version [https://hub.helm.sh/charts/stable/minio/2.4.14](2.4.14)_
 
 The following features will be enabled(used)
 
@@ -46,4 +46,6 @@ ingress:
 
 ![](./userinput.png)
 
-> `$_> helm install kubernetes-charts/minio --version 2.4.14 -f config.yaml -n minio --namespace dictybase`
+```shell
+helm install kubernetes-charts/minio --version 2.4.14 -f config.yaml -n minio --namespace dictybase
+```

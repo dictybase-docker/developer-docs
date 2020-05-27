@@ -4,25 +4,25 @@ title: "Certificates"
 
 ## Install cert manager (v0.8.0)
 
-> Chart version [https://hub.helm.sh/charts/jetstack/cert-manager/v0.8.0](0.8.0)
+_Chart version [https://hub.helm.sh/charts/jetstack/cert-manager/v0.8.0](0.8.0)_
 
 Install the CustomResourceDefinition resources separately
 
 ![](userinput.png)
 
-> `$_> kubectl apply \`  
->  `-f https://raw.githubusercontent.com/jetstack/cert-manager/release-0.8/deploy/manifests/00-crds.yaml`
+```shell
+kubectl apply -f https://raw.githubusercontent.com/jetstack/cert-manager/release-0.8/deploy/manifests/00-crds.yaml
 
-> `$_> kubectl create namespace cert-manager`
+kubectl create namespace cert-manager
 
-> `$_> kubectl label namespace cert-manager certmanager.k8s.io/disable-validation=true`
+kubectl label namespace cert-manager certmanager.k8s.io/disable-validation=true
 
-> `$_> helm repo add jetstack https://charts.jetstack.io`
+helm repo add jetstack https://charts.jetstack.io
 
-> `$_> helm repo update`
+helm repo update
 
-> `$_> helm install jetstack/cert-manager --name cert-manager \`  
->  `--namespace cert-manager --version v0.8.0`
+helm install jetstack/cert-manager --name cert-manager --namespace cert-manager --version v0.8.0`
+```
 
 ## Issuer and Certificate for https access
 

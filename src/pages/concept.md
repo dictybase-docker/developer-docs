@@ -68,19 +68,19 @@ generally management applications to run one-off tasks(runs to completion).
 
 ![](./userinput.png)
 
-> `$_> helm repo list`
+> `helm repo list`
 
 - Check for available dictybase charts
 
 ![](./userinput.png)
 
-> `$_> helm search -l dicty`
+> `helm search -l dicty`
 
 - Update repositories
 
 ![](./userinput.png)
 
-> `$_> helm repo update`
+> `helm repo update`
 
 - Always add the `--namespace dictybase` parameters for deploying every chart,
   otherwise they might not work as expected.

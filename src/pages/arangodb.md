@@ -18,22 +18,26 @@ title: "ArangoDB"
 
 Install two charts, a `CRD` and `deployment controller`.
 
-> `$_> helm install https://github.com/arangodb/kube-arangodb/releases/download/0.3.11/kube-arangodb-crd.tgz`  
-> `$_> helm install https://github.com/arangodb/kube-arangodb/releases/download/0.3.11/kube-arangodb.tgz \`  
->  `--set=DeploymentReplication.Create=false --namespace dictybase`
+```shell
+helm install https://github.com/arangodb/kube-arangodb/releases/download/0.3.11/kube-arangodb-crd.tgz
+helm install https://github.com/arangodb/kube-arangodb/releases/download/0.3.11/kube-arangodb.tgz \
+--set=DeploymentReplication.Create=false --namespace dictybase
+```
 
 In the second step we are disabling deployment replication. For details look
 [here](https://github.com/arangodb/kube-arangodb/blob/0.3.11/docs/Manual/Deployment/Kubernetes/Helm.md).
 
 ### Install arangodb server (single deployment)
 
-> `$_> helm repo update`  
-> `$_> helm install dictybase/arangodb --namespace dictybase \`  
->  `--set arangodb.dbservers.storageClass=fast \`  
->  `--set arangodb.single.storage=50Gi`
+```shell
+helm repo update
+helm install dictybase/arangodb --namespace dictybase
+--set arangodb.dbservers.storageClass=fast \
+--set arangodb.single.storage=50Gi
+```
 
 Here we are using the custom [storage class](/storageclass) and have also
-set up the storage space. ArangoDB version `3.3.23` is also installed by
+set up the storage space. ArangoDB version `3.5.4` is also installed by
 default. To see what else you can customize, check out the chart
 [README](https://github.com/dictybase-docker/kubernetes-charts/tree/master/arangodb).
 
@@ -46,15 +50,14 @@ pick a different version from
 [here](https://hub.docker.com/_/arangodb/?tab=tags)
 
 > `$_> helm repo update`  
-> `$_> helm upgrade [RELEASE NAME] dictybase/arangodb \`  
->  `--set=image.tag=[VERSION] --namespace dictybase`
+> `$_> helm upgrade [RELEASE NAME] dictybase/arangodb --set=image.tag=[VERSION] --namespace dictybase`
 
 ##### Very important notes
 
 - Storage space of the database can only be increased, decreasing it is not
   possible (apparently PVC cannot be shrinked) The pod must be restarted to
   increase the storage.
-  > \$\_> `kubectl delete pod [POD NAME] -n dictybase`
+  > `kubectl delete pod [POD NAME] -n dictybase`
 - Use the helm chart directly to upgrade for patch versions (3.3.11 -> 3.3.23).
   To upgrade the minor versions (3.3.23 -> 3.4.5), you should backup and restore
   the database content in addition to the Helm chart upgrade process.
@@ -79,9 +82,7 @@ vetoed-ladybird 	1       	Mon Apr  8 11:36:58 2019	DEPLOYED	kube-arangodb-0.3.11
 
 So here, you would have to enter
 
-```bash
-helm delete vetoed-ladybird
-```
+> `$_> helm delete vetoed-ladybird`
 
 Make sure **not to delete `steely-mule`**. See official
 [README](https://github.com/arangodb/kube-arangodb/blob/master/README.md) for
@@ -99,7 +100,7 @@ Next, install the operator for `ArangoDeployment` while making sure to disable d
 
 > `$_> helm install \`  
 >  `https://github.com/arangodb/kube-arangodb/releases/download/[VERSION]/kube-arangodb.tgz \`  
->  ``--set=DeploymentReplication.Create=false --namespace dictybase`
+>  `--set=DeploymentReplication.Create=false --namespace dictybase`
 
 Verify that everything is working as expected, then proceed to the next version.
 Repeat as necessary.
@@ -144,7 +145,9 @@ database:
   grant: rw
 ```
 
-> `$_> helm install dictybase/arango-create-database --namespace dictybase -f config.yaml`
+```shell
+helm install dictybase/arango-create-database --namespace dictybase -f config.yaml
+```
 
 **Note:** this chart is capable of creating both databases and users in one shot.
 If the user `george` in this example does not exist, this chart will create the

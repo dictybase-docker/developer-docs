@@ -23,6 +23,12 @@ module.exports = {
               wrapperStyle: "margin-left: 25px;",
             },
           },
+          {
+            resolve: "gatsby-remark-code-buttons",
+            options: {
+              tooltipText: `Copy`,
+            },
+          },
         ],
       },
     },
