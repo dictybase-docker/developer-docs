@@ -1,7 +1,7 @@
 {
   "name": "deployment",
   "private": true,
-  "description": "A simple Gatsby site for displaying dictyBase deployment documentation.",
+  "description": "A simple Gatsby site for displaying dictyBase developer documentation.",
   "version": "0.1.0",
   "author": "Eric Hartline <eric.hartline@northwestern.edu>",
   "dependencies": {
@@ -36,13 +36,14 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
+    "deploy": "gatsby build --prefix-paths && gh-pages -d public -r https://$GH_TOKEN@github.com/dictybase-docker/developer-docs.git",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/dictybase-docker/deployment"
+    "url": "https://github.com/dictybase-docker/developer-docs"
   },
   "bugs": {
-    "url": "https://github.com/dictybase-docker/deployment/issues"
+    "url": "https://github.com/dictybase-docker/developer-docs/issues"
   }
 }
