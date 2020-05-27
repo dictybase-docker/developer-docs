@@ -1,8 +1,8 @@
 name: GitHub Pages build
-on: pull_request
-#   push:
-#     branches:
-#       - develop
+on:
+  push:
+    branches:
+      - develop
 jobs:
   deploy:
     runs-on: ubuntu-18.04
