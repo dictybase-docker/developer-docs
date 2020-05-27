@@ -4,7 +4,7 @@ title: "Custom Storage Class"
 
 # Custom storage class
 
-By default, GKE uses a `standard(pd-standard)` disk as the default [storage
+By default, GKE uses a `standard (pd-standard)` disk as the default [storage
 class](https://kubernetes.io/docs/concepts/storage/storage-classes/). Here we
 setup a custom storage class backed by `ssd disk`.
 

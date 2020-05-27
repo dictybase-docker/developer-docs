@@ -2,7 +2,7 @@
 title: "Concepts"
 ---
 
-# Deployment
+## Deployment
 
 Dictybase deployment strategy is inspired by [twelve factor
 app](https://12factor.net/) methodology. Our strategy primarily follows these concepts..
@@ -17,22 +17,22 @@ app](https://12factor.net/) methodology. Our strategy primarily follows these co
 ## Strategy
 
 For deploying, all dictyBase softwares are packaged using
-[docker](https://docker.io). The packaged(containerized) application are
-generally available publicly from [dictybase
-repository](https://hub.docker.com/r/dictybase/) of docker hub. Each repository
-in the docker hub will be linked to its respective source code in
-[github](https://github.com). The github source code and docker hub repository
+[Docker](https://docker.io). The packaged (containerized) application are
+generally available publicly from the [dictyBase
+repository](https://hub.docker.com/r/dictybase/) of Docker Hub. Each repository
+in the Docker Hub will be linked to its respective source code in
+[GitHub](https://github.com). The GitHub source code and docker hub repository
 are linked and the application packages are automatically built from the source
-code. The package applications(containerized applcations) are then deployed to
-[kubernetes](https://k8s.io) cluster(manages lifecycle of containerized
+code. The package applications (containerized applcations) are then deployed to
+[Kubernetes](https://k8s.io) cluster (manages lifecycle of containerized
 applications). For development platform of kubernetes, we use
-[minikube](https://github.com/kubernetes/minikube/#minikube) and for production
-we use [google container engine](https://cloud.google.com/kubernetes-engine/).
+[Minikube](https://github.com/kubernetes/minikube/#minikube) and for production
+we use [Google Container Engine](https://cloud.google.com/kubernetes-engine/).
 
 ### Concept
 
 Application deployments are managed by grouping them into **virtual application
-stack** where every stack provides a particular service(shares similar functions).
+stack** where every stack provides a particular service (shares similar functions).
 In other words, each stack can also be considered as **multi tiered applications.\***
 Every stack is generally consists of the following core applications
 
