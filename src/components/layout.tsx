@@ -1,6 +1,7 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import Header from "./header"
+import Footer from "./footer"
 import "./layout.css"
 
 type Props = {
@@ -28,8 +29,8 @@ const Layout = ({ children }: Props) => {
           padding: `0 1.0875rem 1.45rem`,
         }}>
         <main>{children}</main>
-        <footer>© {new Date().getFullYear()} dictyBase</footer>
       </div>
+      <Footer />
     </>
   )
 }
