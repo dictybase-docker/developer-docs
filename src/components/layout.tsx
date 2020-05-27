@@ -2,6 +2,7 @@ import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import Header from "./header"
 import Footer from "./footer"
+import Sidebar from "./sidebar"
 import "./layout.css"
 
 type Props = {
@@ -25,10 +26,15 @@ const Layout = ({ children }: Props) => {
       <div
         style={{
           margin: `0 auto`,
-          maxWidth: 960,
+          maxWidth: 1400,
           padding: `0 1.0875rem 1.45rem`,
         }}>
-        <main>{children}</main>
+        <div style={{ display: "flex" }}>
+          <div style={{ width: "25%" }}>
+            <Sidebar />
+          </div>
+          <main style={{ width: "75%" }}>{children}</main>
+        </div>
       </div>
       <Footer />
     </>
