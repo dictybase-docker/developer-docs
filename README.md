@@ -11,9 +11,13 @@ corresponding [GitHub workflow](./.github/workflows/gh-pages.yaml).
 
 ### Adding New Pages
 
-Add any Markdown files to the `src/pages` folder. New pages will be generated on the fly with
-slugs that match the filename (i.e. `admin.md` will create a page at `/admin/`). At the moment,
-this will automatically add links to these pages in the sidebar as well.
+To add pages to existing categories, just add a markdown file to that directory and a new page will be with
+slugs that match the filename (i.e. `/deployment/admin.md` will create a page at `/deployment/admin/`).
+created on the fly.
+
+When creating a new category (i.e. `deployment`), create a new directory under `src/pages`. Copy in the
+[index.tsx](./src/pages/deployment/index.tsx) file and change the Layout `category` prop and add
+whatever default content you want to display.
 
 ### Adding Navbar Links
 
