@@ -1,5 +1,6 @@
 ---
 title: "Minio (S3)"
+category: "deployment"
 ---
 
 _Chart version [https://hub.helm.sh/charts/stable/minio/2.4.14](2.4.14)_

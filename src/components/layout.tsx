@@ -17,9 +17,11 @@ const useStyles = makeStyles((theme) => ({
 
 type Props = {
   children: React.ReactNode
+  /** Category of topics to display */
+  category: string
 }
 
-const Layout = ({ children }: Props) => {
+const Layout = ({ children, category }: Props) => {
   const classes = useStyles()
 
   const data = useStaticQuery(graphql`
@@ -44,7 +46,7 @@ const Layout = ({ children }: Props) => {
       />
       <Grid container className={classes.container}>
         <Grid item xs={3}>
-          <Sidebar />
+          <Sidebar category={category} />
         </Grid>
         <Grid item xs={9}>
           {children}

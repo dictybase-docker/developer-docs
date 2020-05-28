@@ -5,7 +5,7 @@ module.exports = {
     menuLinks: [
       {
         name: "Deployment",
-        link: "/concept",
+        link: "/deployment",
       },
     ],
   },
@@ -44,8 +44,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `dictybase-deployment`,
-        short_name: `deploy`,
+        name: `dictybase-dev-docs`,
+        short_name: `dev-docs`,
         start_url: `/`,
         background_color: `rgb(0, 64, 128)`,
         theme_color: `rgb(0, 64, 128)`,

@@ -1,5 +1,6 @@
 ---
 title: "GKE Cluster Administration"
+category: "deployment"
 ---
 
 To add and manipulate Kubernetes
