@@ -1,7 +1,13 @@
 module.exports = {
   siteMetadata: {
-    title: `dictyBase Deployment Documentation`,
-    description: `All documentation related to deploying dictyBase software.`,
+    title: `dictyBase Developer Docs`,
+    description: `All documentation related to developing dictyBase software.`,
+    menuLinks: [
+      {
+        name: "Deployment",
+        link: "/concept",
+      },
+    ],
   },
   pathPrefix: `/developer-docs`,
   plugins: [
@@ -47,6 +53,7 @@ module.exports = {
         // icon: `src/images/dicty-logo.png`, // This path is relative to the root of the site.
       },
     },
+    `gatsby-plugin-material-ui`,
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
