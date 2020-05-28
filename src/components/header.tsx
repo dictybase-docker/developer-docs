@@ -1,38 +1,59 @@
-import { Link } from "gatsby"
 import React from "react"
+import { Link } from "gatsby"
+import AppBar from "@material-ui/core/AppBar"
+import Toolbar from "@material-ui/core/Toolbar"
+import Typography from "@material-ui/core/Typography"
+import { makeStyles } from "@material-ui/core/styles"
+
+const useStyles = makeStyles((theme) => ({
+  appBar: {
+    background: `rgb(0, 64, 128)`,
+    marginBottom: `1.45rem`,
+  },
+  toolbar: {
+    flexWrap: "wrap",
+  },
+  toolbarTitle: {
+    paddingRight: "10px",
+  },
+  link: {
+    margin: theme.spacing(1, 1.5),
+    color: "#fff",
+  },
+}))
 
 type Props = {
   siteTitle: string
+  menuLinks: Array<{
+    name: string
+    link: string
+  }>
 }
 
-const Header = ({ siteTitle }: Props) => (
-  <header
-    style={{
-      background: `rgb(0, 64, 128)`,
-      marginBottom: `1.45rem`,
-    }}>
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
-      }}>
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
-          }}>
-          {siteTitle}
-        </Link>
-      </h1>
-    </div>
-  </header>
-)
+const Header = ({ siteTitle, menuLinks }: Props) => {
+  const classes = useStyles()
 
-Header.defaultProps = {
-  siteTitle: ``,
+  return (
+    <AppBar position="static" color="primary" className={classes.appBar}>
+      <Toolbar variant="regular" className={classes.toolbar}>
+        <Typography
+          variant="h6"
+          color="inherit"
+          className={classes.toolbarTitle}>
+          <Link to="/" className={classes.link}>
+            {siteTitle}
+          </Link>
+        </Typography>
+        <nav>
+          {menuLinks.map((item) => (
+            <Link to={item.link} className={classes.link} key={item.name}>
+              {item.name}
+            </Link>
+          ))}
+        </nav>
+      </Toolbar>
+    </AppBar>
+  )
 }
 
 export default Header
