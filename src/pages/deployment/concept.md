@@ -1,5 +1,6 @@
 ---
 title: "Concepts"
+category: "deployment"
 ---
 
 ## Deployment

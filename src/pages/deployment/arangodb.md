@@ -1,5 +1,6 @@
 ---
 title: "ArangoDB"
+category: "deployment"
 ---
 
 ## Prerequisites

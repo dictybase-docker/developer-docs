@@ -1,5 +1,6 @@
 ---
 title: "Ingress"
+category: "deployment"
 ---
 
 [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/#what-is-ingress)

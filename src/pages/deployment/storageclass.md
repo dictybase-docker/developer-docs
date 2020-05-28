@@ -1,5 +1,6 @@
 ---
 title: "Custom Storage Class"
+category: "deployment"
 ---
 
 By default, GKE uses a `standard (pd-standard)` disk as the default [storage

@@ -1,5 +1,6 @@
 ---
 title: "Certificates"
+category: "deployment"
 ---
 
 ## Install cert manager (v0.8.0)

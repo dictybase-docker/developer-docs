@@ -1,5 +1,6 @@
 ---
 title: "Suggested Order"
+category: "deployment"
 ---
 
 1. Helm
