@@ -1,28 +1,16 @@
 import React from "react"
-import { graphql, Link } from "gatsby"
 import Layout from "../../components/layout"
 
-const IndexPage = ({ data }) => {
+const IndexPage = () => {
   return (
     <Layout category="deployment">
-      <div>
-        <h1>{data.markdownRemark.frontmatter.title}</h1>
-        <div dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }} />
-      </div>
+      <h3>Deployment</h3>
+      <p>
+        Select any of the topics on the left to read about the dictyBase
+        deployment process.
+      </p>
     </Layout>
   )
 }
 
-const query = graphql`
-  query {
-    markdownRemark(fields: { slug: { eq: "/deployment/concept/" } }) {
-      html
-      frontmatter {
-        title
-      }
-    }
-  }
-`
-
-export { query }
 export default IndexPage

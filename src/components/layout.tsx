@@ -8,7 +8,7 @@ import Sidebar from "./sidebar"
 import "./layout.css"
 
 const useStyles = makeStyles((theme) => ({
-  container: {
+  body: {
     margin: `0 auto`,
     maxWidth: 1400,
     padding: `0 1.0875rem 1.45rem`,
@@ -39,12 +39,12 @@ const Layout = ({ children, category }: Props) => {
   `)
 
   return (
-    <>
+    <div>
       <Header
         siteTitle={data.site.siteMetadata.title}
         menuLinks={data.site.siteMetadata.menuLinks}
       />
-      <Grid container className={classes.container}>
+      <Grid container className={classes.body}>
         <Grid item xs={3}>
           <Sidebar category={category} />
         </Grid>
@@ -53,7 +53,7 @@ const Layout = ({ children, category }: Props) => {
         </Grid>
       </Grid>
       <Footer />
-    </>
+    </div>
   )
 }
 
