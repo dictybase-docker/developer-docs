@@ -25,6 +25,7 @@
 Static site to display all deployment documentation for dictyBase software. Built using Gatsby.
 
 ## Development
+Run `gatsby develop` to start the developmental server.
 
 Do any work in a new branch then open a pull request to merge into `develop` when
 completed. Any pushes to `develop` will generate a new Gatsby build and deploy to
