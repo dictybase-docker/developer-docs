@@ -36,7 +36,7 @@ corresponding [GitHub workflow](./.github/workflows/gh-pages.yaml).
 
 To add pages to existing categories, just add a markdown file to that directory and a new page will be with
 slugs that match the filename (i.e. `/deployment/admin.md` will create a page at `/deployment/admin/`).
-created on the fly.
+created on the fly. Remember to add the required header so that the page is displayed.
 
 When creating a new category (i.e. `deployment`), create a new directory under `src/pages`. Copy in the
 [index.tsx](./src/pages/deployment/index.tsx) file and change the Layout `category` prop and add
