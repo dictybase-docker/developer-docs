@@ -47,7 +47,9 @@ function SEO({ description, lang, meta, title }) {
           content: `summary`,
         },
       ].concat(meta)}
-    />
+    >
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css" integrity="sha256-gzohnzxILb7OZZch6c8mySnK1r0yFviwmBR+1E5O0RM=" crossorigin="anonymous" />
+    </Helmet>
   )
 }
 
