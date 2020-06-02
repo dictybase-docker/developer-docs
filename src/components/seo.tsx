@@ -46,8 +46,12 @@ function SEO({ description, lang, meta, title }) {
           name: `twitter:card`,
           content: `summary`,
         },
-      ].concat(meta)}
-    />
+      ].concat(meta)}>
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css"
+      />
+    </Helmet>
   )
 }
 
