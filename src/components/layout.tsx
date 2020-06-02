@@ -4,6 +4,7 @@ import Grid from "@material-ui/core/Grid"
 import { makeStyles } from "@material-ui/core/styles"
 import Header from "./header"
 import Footer from "./footer"
+import SEO from "./seo"
 import Sidebar from "./sidebar"
 import "./layout.css"
 
@@ -40,6 +41,7 @@ const Layout = ({ children, category }: Props) => {
 
   return (
     <div>
+      <SEO title={data.site.siteMetadata.title} />
       <Header
         siteTitle={data.site.siteMetadata.title}
         menuLinks={data.site.siteMetadata.menuLinks}
@@ -48,7 +50,7 @@ const Layout = ({ children, category }: Props) => {
         <Grid item xs={3}>
           <Sidebar category={category} />
         </Grid>
-        <Grid item xs={9}>
+        <Grid item xs={9} className="markdown-body">
           {children}
         </Grid>
       </Grid>
