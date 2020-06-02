@@ -3,16 +3,14 @@ title: "Minio (S3)"
 category: "deployment"
 ---
 
-_Chart version [https://hub.helm.sh/charts/stable/minio/2.4.14](2.4.14)_
-
-The following features will be enabled(used)
-
+The official chart documentation is [here](https://hub.kubeapps.com/charts/stable/minio).
+# Features used
 - Standalone
 - SSD persistence storage, make sure you have a defined **custom storageclass** for it.
-- Default bucket
-- Ingress enabled for web access
+- Ingress enabled for web access. The certificate **should have been** generated before the installation.
 
-YAML configuration file for helm (using `eric` as an example for the dev domain)
+## Fresh install
+Use the following `yaml` configuration file and save it as `dev.yaml`
 
 ```yaml
 mode: standalone
@@ -21,12 +19,7 @@ persistence:
   storageClass: fast
   # the size is configurable, generally more is better in
   # cloud environment
-  size: 200Gi
-defaultBucket:
-  enabled: true
-  name: dictybase
-  policy: none
-  purge: false
+  size: 20Gi
 # It is kind of username and password
 # you can use it to login from the web interface and manage files
 accessKey: ANYTHINGYOUWANT
@@ -38,15 +31,18 @@ ingress:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/proxy-body-size: 500M
   hosts:
-    - ericstorage.dictybase.dev # change this
+    - something.something.org # change this
   tls:
-    - secretName: dicty-eric-dev-tls # change accordingly
+    - secretName: some-secret # change accordingly
       hosts:
-        - ericstorage.dictybase.dev # change this
+        - something.something.org # change this
 ```
-
-![](./userinput.png)
 
 ```shell
-helm install kubernetes-charts/minio --version 2.4.14 -f config.yaml -n minio --namespace dictybase
+$_> helm install kubernetes-charts/minio --version 5.0.25 -f dev.yaml --name minio --namespace dictybase
 ```
+
+> Creating bucket during installation has been skipped, as that 
+> sometimes leads to a [stuck initcontainer](https://github.com/helm/charts/issues/14014).   
+> So, it's better to create the bucket after the chart is installed.
+
