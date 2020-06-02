@@ -46,3 +46,24 @@ $_> helm install kubernetes-charts/minio --version 5.0.25 -f dev.yaml --name min
 > sometimes leads to a [stuck initcontainer](https://github.com/helm/charts/issues/14014).   
 > So, it's better to create the bucket after the chart is installed.
 
+## Upgrade
+A simple `helm upgrade` should work, however to err on the side of caution, the buckets needs to be
+backed up.    
+- Backup to local disk
+
+```shell
+$_> mc cp -r <server>/<bucket> . 
+```
+
+- Upgrade to latest version
+
+```shell
+$_> helm upgrade minio --namespace dictybase kubernetes-charts/minio --version <version> -f dev.yaml
+```
+
+- In case of missing data, restore it from disk backup
+
+```shell
+$_> mc mb <server>/<bucket>
+$_> mc cp -r folder </server>/<bucket>
+```
