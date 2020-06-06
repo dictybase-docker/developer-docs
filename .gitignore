@@ -70,3 +70,4 @@ yarn-error.log
 
 .in
 .out
+.vscode/settings.json
