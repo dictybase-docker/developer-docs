@@ -14,7 +14,7 @@ category: "deployment"
    - nats-operator
    - nats
 4. Install Kubeless
-5. Install Redis
+5. [Install Redis](/redis)
 6. Install PostgreSQL
    - install dictycontent-schema
    - install dictyuser-schema
@@ -30,42 +30,37 @@ category: "deployment"
    - install kube-arangodb
    - install dictybase/arangodb
    - install dictybase/arango-create-database
-10. [Install Argo](/argoevents)
-    - create argo namespace
-    - add argo helm repo
-    - create issuer and certificate
-    - create minio secret
-    - create github secret
-    - create slack secret
-    - create docker secret
-    - create github gateway ingress
-    - apply argo workflow rbac
-    - install argo w/ custom values
-    - install argo-events (same namespace)
-    - install argo-pipeline
+10. Install dictybase-configuration chart
 11. Install API services
     - content-api-server
     - user-api-server
     - identity-api-server
     - authserver
-    - modware-order
-    - modware-stock
-    - modware-annotation
+    - auth-api-server
+    - annotation-api-server
+    - order-api-server
+    - stock-api-server
 12. Install graphql-server
-13. Load data
+13. Install graphql-authserver
+14. Install event-messenger
+    - event-messenger-email
+    - event-messenger-issue
+15. Load data
     - load-users
     - content-loader
     - assign-roles-permissions
     - load-identity
-14. Install kubeless functions
+    - modware-import (need to upload the argo workflow first?)
+16. Install kubeless functions
     - genefn
     - genecachefn
     - uniprotcachefn
     - goidsfn
     - dashfn
     - pubfn
-15. Install frontend web apps
+17. Install frontend web apps
     - dicty-stock-center
+      - deploy `convert-draftjs-content`
     - dicty-frontpage
       - add files for download section to minio
     - genomepage
@@ -76,91 +71,72 @@ category: "deployment"
 
 # Deployments with prereqs
 
-## Argo
-
-- cert-manager
-- cluster admin
-- minio
-- minio secret
-- workflow rbac
-- custom config (serviceaccount, namespace, ingress, minio) on install
-
-## Argo Events
-
-- argo
-
-## Argo Pipeline
-
-- argo
-- argo events
-- slack secret
-- github secret
-- docker secret
-- github ingress
-
 ## ArangoDB
 
 - nats
 
-## API Services...
+## API Services
 
-## Content API
+### Content API
 
 - postgreSQL
 - dictycontent schema
 
-## User API
+### User API
 
 - postgreSQL
 - dictyuser schema
 
-## Identity API
+### Identity API
 
 - arangodb
 
-## Order API
+### Order API
 
 - arangodb
 
-## Stock API
+### Stock API
 
 - arangodb
 
-## Annotation API
+### Annotation API
 
 - arangodb
 
-## GraphQL Server
+### GraphQL Server
 
 - content
 - user
 - order
 - stock
 - annotation
+- auth
 - kubeless
   - pubfn
 
-## Frontend apps...
+## Frontend apps
 
-## DSC
+### DSC
 
-- authserver
 - content api
 - user api
 - identity api
 - order api
 - stock api
 - annotation api
+- auth api
 - graphql server
+- graphql authserver
+- event-messenger
 
-## dicty-frontpage
+### dicty-frontpage
 
 - authserver
 - content api
 - user api
 - identity api
 
-## genomepage
+### genomepage
 
 - authserver
 - user api
@@ -171,7 +147,7 @@ category: "deployment"
   - uniprotcachefn
   - goidsfn
 
-## dictyaccess
+### dictyaccess
 
 - authserver
 - user api
@@ -179,7 +155,7 @@ category: "deployment"
 - kubeless
   - dashfn
 
-## publication
+### publication
 
 - authserver
 - user api
