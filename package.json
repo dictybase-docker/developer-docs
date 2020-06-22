@@ -15,7 +15,7 @@
     "gatsby-plugin-sharp": "^2.6.11",
     "gatsby-remark-code-buttons": "^2.0.4",
     "gatsby-remark-images": "^3.3.10",
-    "gatsby-source-filesystem": "^2.3.11",
+    "gatsby-source-filesystem": "^2.3.12",
     "gatsby-transformer-remark": "^2.8.15",
     "gatsby-transformer-sharp": "^2.5.5",
     "prop-types": "^15.7.2",
