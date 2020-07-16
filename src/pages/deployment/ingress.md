@@ -56,7 +56,8 @@ helm upgrade nginx-ingress stable/nginx-ingress --version 1.31.0
 helm upgrade nginx-ingress stable/nginx-ingress --version 1.32.0
 ```
 
-There is a new problem when upgrading to version 1.34.0 ([relevant issue](https://github.com/helm/charts/issues/21771)).
+We can safely upgrade up until `1.33.5`. There is a new problem when upgrading
+to version `1.34.0` ([relevant issue](https://github.com/helm/charts/issues/21771)).
 
 ## Deploy Ingress manifests
 
