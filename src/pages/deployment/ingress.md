@@ -4,7 +4,7 @@ category: "deployment"
 ---
 
 [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/#what-is-ingress)
-manages external access to services in kubernetes cluster. To configure ingress access we need to install
+manages external access to services in a Kubernetes cluster. To configure Ingress access we need to install
 
 - nginx-controller
 - [cert-manager](/certificate) for https access
@@ -12,52 +12,65 @@ manages external access to services in kubernetes cluster. To configure ingress 
 
 ## Upgrading from an existing version
 
-Upgrade Helm to the highest version of its 2.x.x series, currently it should be [v2.16.9](https://github.com/helm/helm/releases/tag/v2.16.9). Make sure both client and server side get upgraded.
-
-> `$_> helm version`
-
-Check the current version of nginx-ingress installed in the cluster...
-
-> `$_> helm ls nginx-ingress`
-
-**VERY IMPORTANT:** The load balancer IP must remain the same during this process. For example,
-do not use the `--force` flag when upgrading the chart because that will recreate the load balancer.
-
-Upgrading from `1.6.8` to a higher version has been tested. It is recommended to upgrade
-incrementally based on the app version (for example `1.9.1` chart uses app version `0.25.0`).
-This path can be followed:
+Upgrade Helm to the highest version of its 2.x.x series, currently it should be [v2.16.9](https://github.com/helm/helm/releases/tag/v2.16.9).
+Make sure both the client and server side get upgraded.
 
 ```shell
-helm upgrade nginx-ingress stable/nginx-ingress --version 1.9.1
-helm upgrade nginx-ingress stable/nginx-ingress --version 1.23.0
-helm upgrade nginx-ingress stable/nginx-ingress --version 1.25.1
+helm version
 ```
 
-We can safely upgrade up until `1.25.1`, after which there is a breaking change. See this
-[PR](https://github.com/helm/charts/pull/13646) for more information.
+The Helm _stable_ repository is in the process of being deprecated so it is advised to use the
+community-supported [ingress-nginx](https://github.com/kubernetes/ingress-nginx) chart moving forward.
 
-To upgrade to the next version, we must manually set the cluster IPs for both of the
-`nginx-ingress` services.
+In order to do so, first we need to remove the existing version from the cluster.
 
 ```shell
-BACKEND_CLUSTER_IP=$(kubectl get svc nginx-ingress-default-backend -o jsonpath="{.spec.clusterIP}")
-CONTROLLER_CLUSTER_IP=$(kubectl get svc nginx-ingress-controller -o jsonpath="{.spec.clusterIP}")
-
-helm upgrade nginx-ingress stable/nginx-ingress --set controller.service.clusterIP=${CONTROLLER_CLUSTER_IP} --set defaultBackend.service.clusterIP=${BACKEND_CLUSTER_IP} --version 1.26.0
+helm delete nginx-ingress --purge
 ```
 
-These only need to be set once. The rest of the upgrades can continue as previously listed.
+Now use `nslookup` to find the IP address mapping for your domain.
 
 ```shell
-helm upgrade nginx-ingress stable/nginx-ingress --version 1.27.2
-helm upgrade nginx-ingress stable/nginx-ingress --version 1.29.0
-helm upgrade nginx-ingress stable/nginx-ingress --version 1.29.6
-helm upgrade nginx-ingress stable/nginx-ingress --version 1.31.0
-helm upgrade nginx-ingress stable/nginx-ingress --version 1.32.0
+nslookup eric.dictybase.dev
 ```
 
-We can safely upgrade up until `1.33.5`. There is a new problem when upgrading
-to version `1.34.0` ([relevant issue](https://github.com/helm/charts/issues/21771)).
+Make note of the IP address returned, you will need it when installing the new chart.
+
+Add the Helm repository for ingress-nginx.
+
+```shell
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx/
+```
+
+Now either make a YAML file (i.e. values.yaml) with the below config or manually set it in the command line.
+
+```yaml
+controller:
+  service:
+    loadBalancerIP: YOUR_IP_ADDRESS...
+```
+
+```shell
+helm install ingress-nginx/ingress-nginx -n ingress-nginx -f values.yaml
+```
+
+OR
+
+```shell
+helm install ingress-nginx/ingress-nginx -n ingress-nginx --set controller.service.loadBalancerIP=YOUR_IP_ADDRESS
+```
+
+Verify deployment is successful
+
+```shell
+helm ls ingress-nginx
+```
+
+You can also verify the load balancer external IP matches the IP you set.
+
+```shell
+kubectl get svc ingress-nginx-controller
+```
 
 ## Deploy Ingress manifests
 
