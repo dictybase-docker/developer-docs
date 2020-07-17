@@ -72,11 +72,19 @@ expected manifests to be deployed.
 
 ## Fresh install
 
-_Chart version [1.40.3](https://hub.helm.sh/charts/stable/nginx-ingress/1.40.3)_
+_Chart version [2.11.1](https://github.com/kubernetes/ingress-nginx/releases/tag/ingress-nginx-2.11.1)_
 
-Make sure you update (`helm repo update`) and check the name of
-the registered default helm repository (`helm repo list`).
+The Helm _stable_ repository is in the process of being deprecated so fresh installs
+are advised to use the community-supported [ingress-nginx](https://github.com/kubernetes/ingress-nginx) chart.
+
+- Add Helm repository for ingress-nginx
 
 ```shell
-helm install stable/nginx-ingress --name nginx-ingress --version 1.40.3
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx/
+```
+
+- Installation
+
+```shell
+helm install ingress-nginx/ingress-nginx -n ingress-nginx --version 2.11.1
 ```
