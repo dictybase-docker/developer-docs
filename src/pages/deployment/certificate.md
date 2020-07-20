@@ -3,26 +3,54 @@ title: "Certificates"
 category: "deployment"
 ---
 
-## Install cert manager (v0.8.0)
+## Upgrading existing cert manager
 
-_Chart version [https://hub.helm.sh/charts/jetstack/cert-manager/v0.8.0](0.8.0)_
+Seemingly every minor release of cert-manager brings some breaking changes, so
+it is recommended to delete the existing version and perform a fresh install. Follow
+these steps to ensure a successful upgrade.
 
-Install the CustomResourceDefinition resources separately
-
-![](userinput.png)
+1. [Backup existing cert-manager configuration resources](https://cert-manager.io/docs/tutorials/backup/).
+   We won't be using these in this upgrade, but it is still recommended to keep a backup.
 
 ```shell
-kubectl apply -f https://raw.githubusercontent.com/jetstack/cert-manager/release-0.8/deploy/manifests/00-crds.yaml
+kubectl get -o yaml --all-namespaces \
+     issuer,clusterissuer,certificates > cert-manager-backup.yaml
+```
 
+2. Delete existing cert-manager (and namespace)
+
+```shell
+helm delete cert-manager --purge
+
+kubectl delete namespace cert-manager
+```
+
+3. Remove existing CRDs (change `0.8` to your installed version if necessary)
+
+```shell
+kubectl delete -f https://raw.githubusercontent.com/jetstack/cert-manager/release-0.8/deploy/manifests/00-crds.yaml
+```
+
+4. Verify existing CRDs are removed
+
+```shell
+kubectl get crd | grep certmanager.k8s.io
+```
+
+5. Proceed to the fresh install steps below.
+
+## Fresh install
+
+_Chart version [0.15.2](https://hub.helm.sh/charts/jetstack/cert-manager/v0.15.2)_
+
+```shell
 kubectl create namespace cert-manager
-
-kubectl label namespace cert-manager certmanager.k8s.io/disable-validation=true
 
 helm repo add jetstack https://charts.jetstack.io
 
 helm repo update
 
-helm install jetstack/cert-manager --name cert-manager --namespace cert-manager --version v0.8.0`
+helm install jetstack/cert-manager --name cert-manager --namespace cert-manager --version v0.15.2 --set installCRDs=true
 ```
 
 ## Issuer and Certificate for https access
@@ -37,7 +65,7 @@ Two resources have to be created: `issuer` and `certificate`.
 **Issuer**
 
 ```yaml
-apiVersion: certmanager.k8s.io/v1alpha1
+apiVersion: cert-manager.io/v1alpha2
 kind: Issuer
 metadata:
   # change the developer name accordingly
@@ -53,7 +81,10 @@ spec:
     privateKeySecretRef:
       name: dictybase-eric-dev
     # Enable the HTTP-01 challenge provider
-    http01: {}
+    solvers:
+      - http01:
+          ingress:
+            class: nginx
 ```
 
 ![](./userinput.png)
@@ -65,7 +96,7 @@ spec:
 **Certificate**
 
 ```yaml
-apiVersion: certmanager.k8s.io/v1alpha1
+apiVersion: cert-manager.io/v1alpha2
 kind: Certificate
 metadata:
   name: dicty-eric-dev
@@ -83,18 +114,6 @@ spec:
     - ericgraphql.dictybase.dev
     - ericstorage.dictybase.dev
     - erictoken.dictybase.dev
-  acme:
-    config:
-      - http01:
-          ingressClass: nginx
-        domains:
-          - eric.dictybase.dev
-          - ericapi.dictybase.dev
-          - ericauth.dictybase.dev
-          - ericfunc.dictybase.dev
-          - ericgraphql.dictybase.dev
-          - ericstorage.dictybase.dev
-          - erictoken.dictybase.dev
 ```
 
 ![](./userinput.png)
