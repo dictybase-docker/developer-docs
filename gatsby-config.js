@@ -30,10 +30,17 @@ module.exports = {
               wrapperStyle: "margin-left: 25px;",
             },
           },
+          // {
+          //   resolve: "gatsby-remark-code-buttons",
+          //   options: {
+          //     tooltipText: `Copy`,
+          //   },
+          // },
           {
-            resolve: "gatsby-remark-code-buttons",
+            resolve: "gatsby-remark-table-of-contents",
             options: {
-              tooltipText: `Copy`,
+              fromHeading: 1,
+              toHeading: 6,
             },
           },
         ],
@@ -54,7 +61,6 @@ module.exports = {
       },
     },
     `gatsby-plugin-material-ui`,
-    'gatsby-remark-table-of-contents',
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
