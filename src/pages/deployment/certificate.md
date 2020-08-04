@@ -4,20 +4,43 @@ category: "deployment"
 ---
 
 ## Upgrading existing cert manager
+In case of breaking changes or bump in multiple versions it's advisable to remove and do a fresh
+install of latest helm chart.
 
-Seemingly every minor release of cert-manager brings some breaking changes, so
-it is recommended to delete the existing version and perform a fresh install. Follow
-these steps to ensure a successful upgrade.
+#### [Backup existing cert-manager configuration resources](https://cert-manager.io/docs/tutorials/backup/)  
 
-1. [Backup existing cert-manager configuration resources](https://cert-manager.io/docs/tutorials/backup/).
-   We won't be using these in this upgrade, but it is still recommended to keep a backup.
+It's highly recommended to always backup before removing any resources from
+kubernetes. Remove certificates from `argo` and `keel` namespaces. Since
+those charts are no longer needed, removing their namespaces should prune
+them from the system.
+```shell
+kubectl delete namespace argo keel
+```
+Then go ahead with the backups.
 
 ```shell
-kubectl get -o yaml --all-namespaces \
-     issuer,clusterissuer,certificates > cert-manager-backup.yaml
+kubectl get -o yaml --all-namespaces issuer > cert-manager-issues-backup.yaml
+kubectl get -o yaml --all-namespaces certificates > cert-manager-certifactes-backup.yaml
 ```
 
-2. Delete existing cert-manager (and namespace)
+#### Backup secrets referenced by issue and certificate
+- Extract the secret names
+
+```shell
+kubectl get issuers --all-namespaces -o jsonpath='{.items[*].spec.ca.secretName}'
+kubectl get issuers --all-namespaces -o jsonpath='{.items[*].spec.acme.privateKeySecretRef.name}'
+```
+
+- Dump their manifests
+
+```shell
+kubectl get secret -n cert-manager -o yaml cert-manager-webhook-ca > cert-manager-webhook-ca.secret
+kubectl get secret -n dictybase -o yaml  dictybase-devsidd > dictybase-devsidd.secret
+```
+The name of the secret in `dictybase` namespace might vary.
+
+
+#### Delete existing cert-manager (and namespace)
 
 ```shell
 helm delete cert-manager --purge
