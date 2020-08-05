@@ -3,6 +3,9 @@ title: "Certificates"
 category: "deployment"
 ---
 
+```toc
+```
+
 # Fresh install
 
 _Chart version [0.15.2](https://hub.helm.sh/charts/jetstack/cert-manager/v0.15.2)_
