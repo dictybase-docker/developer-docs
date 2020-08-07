@@ -17,83 +17,90 @@ helm repo update
 helm install jetstack/cert-manager --name cert-manager --namespace cert-manager --version v0.15.2 --set installCRDs=true
 ```
 
-# Upgrading existing cert manager
-In case of breaking changes or bump in multiple versions it's advisable to remove and do a fresh
-install of latest helm chart.
-
-## [Backup existing cert-manager configuration resources](https://cert-manager.io/docs/tutorials/backup/)  
-
-It's highly recommended to always backup before removing any resources from
-kubernetes. Remove certificates from `argo` and `keel` namespaces. Since
-those charts are no longer needed, removing their namespaces should prune
-them from the system.
-```shell
-kubectl delete namespace argo keel
-```
-Then go ahead with the backups.
-
-```shell
-kubectl get -o yaml --all-namespaces issuer > cert-manager-issues-backup.yaml
-kubectl get -o yaml --all-namespaces certificates > cert-manager-certifactes-backup.yaml
-```
-
-## Backup secrets referenced by issue and certificate
-### Extract the secret names
-
-```shell
-kubectl get issuers --all-namespaces -o jsonpath='{.items[*].spec.ca.secretName}'
-kubectl get issuers --all-namespaces -o jsonpath='{.items[*].spec.acme.privateKeySecretRef.name}'
-```
-
-### Dump their manifests
-
-```shell
-kubectl get secret -n cert-manager -o yaml cert-manager-webhook-ca > cert-manager-webhook-ca.secret
-kubectl get secret -n dictybase -o yaml  dictybase-devsidd > dictybase-devsidd.secret
-```
-The name of the secret in `dictybase` namespace might vary, so change the name accordingly.
-
-
-## Delete existing cert-manager
-### Remove chart and namespaces
-
-```shell
-helm delete cert-manager --purge
-kubectl delete namespace cert-manager
-```
-
-### Remove existing CRDs (change `0.8` to your installed version if necessary)
-```shell
-kubectl delete -f https://raw.githubusercontent.com/jetstack/cert-manager/release-0.8/deploy/manifests/00-crds.yaml
-```
-Verify existing CRDs are removed
-```shell
-kubectl get crd | grep certmanager.k8s.io
-```
-
 # Issuer and Certificate for https access
-Each developer gets their own subdomain at
-[dictybase.dev](https://dictybase.dev). This template will serve as a guide
-used for all developers. Here, `eric` will be used as an example.
-Two resources have to be created: `issuer` and `certificate`.
-
-Create the following helm value file...
+To generate an `Issuer` resource, create the following helm value file...
 
 ```yaml
 namespace: dictybase
 issuer:
   name: dictybase-eric-dev
   email: YOUR_EMAIL_HERE...
-certifcate:
-  name: dicty-eric-dev
-  domains:
-    - eric.dictybase.dev
-    - ericapi.dictybase.dev
-    - ericfunc.dictybase.dev
-
 ```
-Install the helm chart
+Then install the helm chart to create the resource.
 
 ```shell
-helm install --namespace dictybase --name eric-issuer-certificate -f values.yaml dictybase/issuer-certificate
+helm install --namespace dictybase --name eric-issuer-certificate -f values.yaml dictybase/issuer
 ```
+
+The `Certificate` resource will be create indirectly by adding one extra annotation
+to the `Ingress` manifest. So, pick up any of the ingress value file, add the following anntoation,
+```yaml
+ingress:
+  annotations:
+    cert-manager.io/issuer: <Name of issuer created above> 
+  tls:
+   - secretName: <Name>
+     .....
+     .....
+``` 
+Then install the ingress using the helm chart.
+```shell
+helm install -n <release-name> dictybase/dictybase-ingress --namespace dictybase -f values.yaml 
+```
+
+The `Certificate` should be created by `cert-manager`. Check the presence of certificate
+```shell
+kubectl get certificate -n dictybase
+```
+
+## In case of existing ingress
+- Add only the `cert-manager.io/issuer` annotation. The `tls` configuration is not needed for an existing secret.
+- To use the same certificate for multiple ingress, 
+  - Use the same secret in the `tls` configuration.
+  - Do not need to add the `cert-manager` annotation for more than one ingress.
+
+
+
+
+# Upgrading existing cert manager
+In case of breaking changes or bump in multiple versions it's advisable to remove and do a fresh
+install of latest cert-manager using helm chart.
+
+## Backup secrets referenced by issue and certificate
+### Extract the secret names
+```shell
+kubectl get issuers --all-namespaces -o jsonpath='{.items[*].spec.ca.secretName}'
+kubectl get issuers --all-namespaces -o jsonpath='{.items[*].spec.acme.privateKeySecretRef.name}'
+```
+
+### Backup their manifests
+```shell
+kubectl get secret -n cert-manager -o yaml cert-manager-webhook-ca > cert-manager-webhook-ca.secret
+kubectl get secret -n dictybase -o yaml  dictybase-devsidd > dictybase-devsidd.secret
+```
+The name of the secret in `dictybase` namespace might vary, so change the name accordingly.   
+**Note:** The secrets can be used to transfers the issuers to a different cluster.
+
+
+## Delete existing cert-manager
+### Remove chart and namespaces
+```shell
+helm delete cert-manager --purge
+kubectl delete namespace cert-manager
+```
+### Remove existing CRDs (change `0.8` to your installed version if necessary)
+```shell
+kubectl delete -f https://raw.githubusercontent.com/jetstack/cert-manager/release-0.8/deploy/manifests/00-crds.yaml
+```
+> Verify existing CRDs are removed
+```shell
+kubectl get crd | grep certmanager.k8s.io
+```
+### Next step
+Removing `cert-manager` will remove all issuers and certificate from the
+cluster while keeping all secrets referenced by issuers and ingresses. So,
+the following steps will be...
+- Fresh install of `cert-manager`.
+- Create a new `Issuer` that references the existing secret.
+- Update ingress using `cert-manager` annotation and let the tls reference
+the existing secret. It will indirectly create the `Certficate` resource.
