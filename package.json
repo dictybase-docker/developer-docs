@@ -14,7 +14,7 @@
     "gatsby-plugin-react-helmet": "^3.3.10",
     "gatsby-plugin-sharp": "^2.6.25",
     "gatsby-remark-code-buttons": "^2.0.4",
-    "gatsby-remark-images": "^3.3.21",
+    "gatsby-remark-images": "^3.3.25",
     "gatsby-remark-table-of-contents": "^0.0.9",
     "gatsby-source-filesystem": "^2.3.24",
     "gatsby-transformer-remark": "^2.8.28",
