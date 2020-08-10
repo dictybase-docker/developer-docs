@@ -48,6 +48,7 @@ The Helm _stable_ repository is in the process of being deprecated so it is advi
 community-supported [ingress-nginx](https://github.com/kubernetes/ingress-nginx) chart moving forward.
 ```shell
 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx/
+helm repo update
 ```
 ## Install the chart
 Chart version [2.11.1](https://github.com/kubernetes/ingress-nginx/releases/tag/ingress-nginx-2.11.1)
@@ -83,6 +84,7 @@ The Helm _stable_ repository is in the process of being deprecated so it is advi
 community-supported [ingress-nginx](https://github.com/kubernetes/ingress-nginx) chart moving forward.
 ```shell
 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx/
+helm repo update
 ```
 ## Install the chart
 Chart version [2.11.1](https://github.com/kubernetes/ingress-nginx/releases/tag/ingress-nginx-2.11.1)
