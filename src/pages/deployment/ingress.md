@@ -12,17 +12,8 @@ manages external access to services in a Kubernetes cluster. To configure Ingres
 - Setup [cert-manager](/deployment/certificate) for https access.
 - ingress manifests for opening up services   
 
-# Upgrading helm
-It's recommend to upgrade `helm(v2)` to its latest version. As of this writing upgrade helm
-to [v2.16.9](https://github.com/helm/helm/releases/tag/v2.16.9). After the upgarde of helm binary,
-run 
-```shell
-helm init --upgrade
-```
-Then wait for 5-6 seconds and check the helm client and server version. They should match each other.
-```shell
-helm version
-```
+It's always recommend to [upgrade helm](/deployment/helm)
+
 # Upgrade nginx-controller
 > ## Quick start
 ```shell
