@@ -12,7 +12,7 @@ manages external access to services in a Kubernetes cluster. To configure Ingres
 - Setup [cert-manager](/deployment/certificate) for https access.
 - ingress manifests for opening up services   
 
-It's always recommend to [upgrade helm](/deployment/helm)
+> #### It's always recommend to [upgrade helm](/deployment/helm) if possible.
 
 # Upgrade nginx-controller
 > ## Quick start
