@@ -56,6 +56,7 @@ helm repo update
 ## Install the chart
 Chart version [2.11.1](https://github.com/kubernetes/ingress-nginx/releases/tag/ingress-nginx-2.11.1)
 - Create the following `yaml` value file
+
 ```yaml
   controller:
       service:
@@ -65,6 +66,7 @@ Chart version [2.11.1](https://github.com/kubernetes/ingress-nginx/releases/tag/
 helm install ingress-nginx/ingress-nginx -n ingress-nginx --version 2.11.1 -f values.yaml
 ```
 - Verify the loadbalancer ip
+
 ```shell
 kubectl get svc  -n default ingress-nginx-controller -o jsonpath='{.status.loadBalancer.ingress[0].ip}'
 ```
