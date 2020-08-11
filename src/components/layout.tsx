@@ -3,12 +3,11 @@ import { useStaticQuery, graphql } from "gatsby"
 import Grid from "@material-ui/core/Grid"
 import { makeStyles } from "@material-ui/core/styles"
 import Header from "./header"
-import Footer from "./footer"
+// import Footer from "./footer"
 import SEO from "./seo"
 import Sidebar from "./sidebar"
-import "./layout.css"
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   body: {
     margin: `0 auto`,
     maxWidth: 1400,
@@ -40,7 +39,7 @@ const Layout = ({ children, category }: Props) => {
   `)
 
   return (
-    <div>
+    <>
       <SEO title={data.site.siteMetadata.title} />
       <Header
         siteTitle={data.site.siteMetadata.title}
@@ -54,8 +53,8 @@ const Layout = ({ children, category }: Props) => {
           {children}
         </Grid>
       </Grid>
-      <Footer />
-    </div>
+      {/* <Footer /> */}
+    </>
   )
 }
 
