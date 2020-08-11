@@ -7,29 +7,17 @@ category: "deployment"
    - create rbac
    - initialize w/ tiller
    - add dictybase helm repo
-   - create [admin](/admin) clusterrolebinding
-   - create nats clusterrolebinding
-2. [Create custom storage class using SSD](/storageclass)
-3. Install Nats
-   - nats-operator
-   - nats
-4. Install Kubeless
-5. [Install Redis](/redis)
+   - create [admin](/deployment/admin) clusterrolebinding
+2. [Create custom storage class using SSD](/deployment/storageclass)
+3. [Install Nats](/deployment/nats)
+4. [Install Kubeless(/deployment/kubeless)]
+5. [Install Redis](/deployment/redis)
 6. Install PostgreSQL
    - install dictycontent-schema
    - install dictyuser-schema
-7. [Install Ingress](/ingress)
-   - install nginx-controller
-   - install cert-manager
-   - create issuer and certificate
-   - install dictybase-auth-ingress
-   - install dictybase-ingress
-8. [Install Minio](/minio)
-9. [Install ArangoDB](/arangodb)
-   - install kube-arangodb-crd
-   - install kube-arangodb
-   - install dictybase/arangodb
-   - install dictybase/arango-create-database
+7. [Install Ingress](/deployment/ingress)
+8. [Install Minio](/deployment/minio)
+9. [Install ArangoDB](/deployment/arangodb)
 10. Install dictybase-configuration chart
 11. Install API services
     - content-api-server
@@ -70,10 +58,6 @@ category: "deployment"
 ---
 
 # Deployments with prereqs
-
-## ArangoDB
-
-- nats
 
 ## API Services
 
