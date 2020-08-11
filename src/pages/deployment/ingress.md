@@ -64,7 +64,7 @@ helm install ingress-nginx/ingress-nginx -n ingress-nginx --version 2.11.1
 ```
 - Verify the loadbalancer ip
 ```shell
-kubectl get svc  -n default nginx-ingress-controller -o jsonpath='{.status.loadBalancer.ingress[0].ip}'
+kubectl get svc  -n default ingress-nginx-controller -o jsonpath='{.status.loadBalancer.ingress[0].ip}'
 ```
 
 # Deploy Ingress manifests
