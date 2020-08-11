@@ -8,10 +8,9 @@ category: "deployment"
 
 [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/#what-is-ingress)
 manages external access to services in a Kubernetes cluster. To configure Ingress access we need to install
-
 - nginx-controller
 - Setup [cert-manager](/deployment/certificate) for https access.
-- ingress manifests for opening up services
+- ingress manifests for opening up services   
 
 # Upgrading helm
 It's recommend to upgrade `helm(v2)` to its latest version. As of this writing upgrade helm
@@ -24,8 +23,23 @@ Then wait for 5-6 seconds and check the helm client and server version. They sho
 ```shell
 helm version
 ```
-
 # Upgrade nginx-controller
+> ## Quick start
+```shell
+kubectl get svc  -n default nginx-ingress-controller -o jsonpath='{.status.loadBalancer.ingress[0].ip}'
+helm delete nginx-ingress --purge
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx/
+helm repo update
+```
+```yaml
+  controller:
+      service:
+        loadBalancerIP: YOUR_IP_ADDRESS...
+```
+```shell
+helm install ingress-nginx/ingress-nginx -n ingress-nginx --version 2.11.1 -f values.yaml
+```
+> ## Step by step
 ## Gather external IP
 **From cluster loadbalancer**
 ```shell
@@ -37,12 +51,10 @@ nslookup eric.dictybase.dev
 ```
 The values should match each other, otherwise use the `ip` from loaderbalancer query. The `ip` will be
 used to install the new chart.
-
 ## Remove existing chart
 ```shell
 helm delete nginx-ingress --purge
 ```
-
 ## Add helm repository for ingress-nginx
 The Helm _stable_ repository is in the process of being deprecated so it is advised to use the
 community-supported [ingress-nginx](https://github.com/kubernetes/ingress-nginx) chart moving forward.
@@ -52,7 +64,6 @@ helm repo update
 ```
 ## Install the chart
 Chart version [2.11.1](https://github.com/kubernetes/ingress-nginx/releases/tag/ingress-nginx-2.11.1)
-
 - Create the following `yaml` value file
 ```yaml
   controller:
@@ -60,7 +71,7 @@ Chart version [2.11.1](https://github.com/kubernetes/ingress-nginx/releases/tag/
         loadBalancerIP: YOUR_IP_ADDRESS...
 ```
 ```shell
-helm install ingress-nginx/ingress-nginx -n ingress-nginx --version 2.11.1
+helm install ingress-nginx/ingress-nginx -n ingress-nginx --version 2.11.1 -f values.yaml
 ```
 - Verify the loadbalancer ip
 ```shell
@@ -78,17 +89,8 @@ expected manifests to be deployed.
 - Frontend applications
 
 # Fresh install
-
-## Add helm repository for ingress-nginx
-The Helm _stable_ repository is in the process of being deprecated so it is advised to use the
-community-supported [ingress-nginx](https://github.com/kubernetes/ingress-nginx) chart moving forward.
 ```shell
 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx/
 helm repo update
-```
-## Install the chart
-Chart version [2.11.1](https://github.com/kubernetes/ingress-nginx/releases/tag/ingress-nginx-2.11.1)
-
-```shell
 helm install ingress-nginx/ingress-nginx -n ingress-nginx --version 2.11.1
 ```
