@@ -25,24 +25,27 @@ module.exports = {
         plugins: [
           `gatsby-remark-autolink-headers`,
           {
+            resolve: `gatsby-remark-table-of-contents`,
+            options: {
+              fromHeading: 1,
+              toHeading: 6,
+            },
+          },
+          {
+            resolve: "gatsby-remark-code-buttons",
+            options: {
+              tooltipText: `Copy`,
+            },
+          },
+          {
             resolve: `gatsby-remark-images`,
             options: {
               maxWidth: 800,
               wrapperStyle: "margin-left: 25px;",
             },
           },
-          // {
-          //   resolve: "gatsby-remark-code-buttons",
-          //   options: {
-          //     tooltipText: `Copy`,
-          //   },
-          // },
           {
-            resolve: "gatsby-remark-table-of-contents",
-            options: {
-              fromHeading: 1,
-              toHeading: 6,
-            },
+            resolve: `gatsby-remark-prismjs`,
           },
         ],
       },
