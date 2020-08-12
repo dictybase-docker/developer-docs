@@ -52,8 +52,6 @@ arangodb:
     - app: modware-order
       name: order
 slack:
-  channel: ericdev-notification
-  endpoint: https://ericargo.dictybase.dev/workflows/argo
   token: SLACK_API_TOKEN...
 minio:
   accesskey: MINIO_ACCESS_KEY...
