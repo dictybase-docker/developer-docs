@@ -13,15 +13,7 @@ category: "deployment"
 8. [Install Minio](/deployment/minio)
 9. [Install ArangoDB](/deployment/arangodb)
 10. [Install dictybase-configuration chart](/deployment/dictyconfig)
-11. Install API services
-    - content-api-server
-    - user-api-server
-    - identity-api-server
-    - authserver
-    - auth-api-server
-    - annotation-api-server
-    - order-api-server
-    - stock-api-server
+11. [Install API services](/deployment/backend)
 12. [Install kubeless functions](/deployment/kubeless)
 13. Install graphql-server
 14. Install graphql-authserver
