@@ -12,7 +12,7 @@ category: "deployment"
 7. [Install Ingress](/deployment/ingress)
 8. [Install Minio](/deployment/minio)
 9. [Install ArangoDB](/deployment/arangodb)
-10. Install dictybase-configuration chart
+10. [Install dictybase-configuration chart](/deployment/dictyconfig)
 11. Install API services
     - content-api-server
     - user-api-server
@@ -22,16 +22,16 @@ category: "deployment"
     - annotation-api-server
     - order-api-server
     - stock-api-server
-12. Install graphql-server
-13. Install graphql-authserver
-14. Install event-messenger
+12. [Install kubeless functions](/deployment/kubeless)
+13. Install graphql-server
+14. Install graphql-authserver
+15. Install event-messenger
     - event-messenger-email
     - event-messenger-issue
-15. Load data
+16. Load data
     - load-users
     - content-loader
     - assign-roles-permissions
     - load-identity
     - modware-import (need to upload the argo workflow first?)
-16. [Install kubeless functions](/deployment/kubeless)
 17. [Install frontend web apps](/deployment/frontend)
