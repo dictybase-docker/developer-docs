@@ -6,7 +6,7 @@ category: "deployment"
 1. [Set up Helm](/deployment/helm)
 2. [Create custom storage class using SSD](/deployment/storageclass)
 3. [Install Nats](/deployment/nats)
-4. [Install Kubeless(/deployment/kubeless)]
+4. [Install Kubeless](/deployment/kubeless)
 5. [Install Redis](/deployment/redis)
 6. [Install PostgreSQL](/deployment/postgres)
 7. [Install Ingress](/deployment/ingress)
@@ -14,7 +14,7 @@ category: "deployment"
 9. [Install ArangoDB](/deployment/arangodb)
 10. [Install dictybase-configuration chart](/deployment/dictyconfig)
 11. [Install API services](/deployment/backend)
-12. [Install kubeless functions](/deployment/kubeless)
+12. [Install Kubeless functions](/deployment/kubeless)
 13. Install graphql-server
 14. Install graphql-authserver
 15. Install event-messenger
