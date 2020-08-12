@@ -33,5 +33,6 @@ kubectl create -f https://github.com/kubeless/kubeless/releases/download/v1.0.7/
 ```
 
 If you had removed a previous instance of Kubeless, you will need to reinstall any
-previous functions. At this time you will only need to reinstall `dashboard` and `publication`
+previous functions. At this time you will only need to reinstall `dashboard` ([docs](https://github.com/dictybase-playground/kubeless-gofn/tree/master/dashboard))
+and `publication` ([docs](https://github.com/dictybase-playground/kubeless-gofn/tree/master/publication))
 from [kubeless-gofn](https://github.com/dictybase-playground/kubeless-gofn).
