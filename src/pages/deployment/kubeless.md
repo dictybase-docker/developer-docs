@@ -36,3 +36,13 @@ If you had removed a previous instance of Kubeless, you will need to reinstall a
 previous functions. At this time you will only need to reinstall `dashboard` ([docs](https://github.com/dictybase-playground/kubeless-gofn/tree/master/dashboard))
 and `publication` ([docs](https://github.com/dictybase-playground/kubeless-gofn/tree/master/publication))
 from [kubeless-gofn](https://github.com/dictybase-playground/kubeless-gofn).
+
+It is also assumed that the following functions have previously been deployed:
+
+- [genefn](https://github.com/dictybase-playground/kubeless-nodefn/tree/master/gene)
+- [genecachefn](https://github.com/dictybase-playground/kubeless-nodefn/tree/master/geneids)
+- [goidsfn](https://github.com/dictybase-playground/kubeless-nodefn/tree/master/goids)
+- [uniprotcachefn](https://github.com/dictybase-playground/kubeless-gofn/tree/master/uniprot)
+
+These four were only used to add data to the Redis cache. After installation, they do
+not need to be actively running for any of our software.
