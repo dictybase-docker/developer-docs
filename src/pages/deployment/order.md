@@ -3,18 +3,12 @@ title: "Suggested Order"
 category: "deployment"
 ---
 
-1. Helm
-   - create rbac
-   - initialize w/ tiller
-   - add dictybase helm repo
-   - create [admin](/deployment/admin) clusterrolebinding
+1. [Set up Helm](/deployment/helm)
 2. [Create custom storage class using SSD](/deployment/storageclass)
 3. [Install Nats](/deployment/nats)
 4. [Install Kubeless(/deployment/kubeless)]
 5. [Install Redis](/deployment/redis)
-6. Install PostgreSQL
-   - install dictycontent-schema
-   - install dictyuser-schema
+6. [Install PostgreSQL](/deployment/postgres)
 7. [Install Ingress](/deployment/ingress)
 8. [Install Minio](/deployment/minio)
 9. [Install ArangoDB](/deployment/arangodb)
