@@ -23,6 +23,9 @@ This app requires the following backend software to be running:
 - [modware-stock](https://github.com/dictyBase/modware-stock)
 - [modware-user](https://github.com/dictyBase/modware-user)
 
+**Note:** in order to create GitHub issues and send emails on order submission, the
+appropriate `event-messenger` charts also need to be deployed.
+
 ### Installation
 
 ```shell
