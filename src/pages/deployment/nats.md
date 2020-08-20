@@ -66,17 +66,18 @@ updated do the following steps,
 git clone git@github.com:dictybase-docker/kubernetes-charts.git
 ```
 
-- Clone the nats-operator repository and change to helm folder
+- Clone the nats-operator repository and change to appropiate folder
 
 ```shell 
 git clone https://github.com/nats-io/nats-operator.git
-cd helm
+cd helm/nats-operator
 ```
 
+- Make necessary changes
 - Package the chart and copy the tarball to the docs folder of `dictybase helm chart` repository
 
 ```shell
-helm package nats-operator
+helm package . 
 ```
 
 - Go back to the `dictybase helm chart` repository and update the package index

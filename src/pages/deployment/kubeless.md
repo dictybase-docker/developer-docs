@@ -65,3 +65,41 @@ It is also assumed that the following functions have previously been deployed:
 
 These four were only used to add data to the Redis cache. After installation, they do
 not need to be actively running for any of our software.
+
+# Extra sauce(syncing with upstream chart)
+The chart in the dictybase `helm repository` is packaged from the
+upstream [repository](https://github.com/helm/charts). To keep it
+updated do the following steps,
+
+- Clone the dictybase helm chart repository
+
+```shell
+git clone git@github.com:dictybase-docker/kubernetes-charts.git
+```
+
+- Clone the upstream repository and change to the kubeless folder
+
+```shell 
+git clone https://github.com/helm/charts.git
+cd incubator/kubeless
+```
+
+- Make any changes necessary
+- Package the chart and copy the tarball to the docs folder of `dictybase helm chart` repository
+
+```shell
+helm package . 
+```
+
+- Go back to the `dictybase helm chart` repository and update the package index
+
+```shell
+helm repo index docs
+```
+
+- Commit the push the changes.
+- Synchronize the changes with helm client.
+
+```shell
+helm repo update
+```
