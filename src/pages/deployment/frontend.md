@@ -89,7 +89,8 @@ helm install dictybase/genomepage --namespace dictybase -n genomepage \
 
 This app requires the following backend software to be running:
 
-- [authserver](https://github.com/dictyBase/authserver)
+- [graphql-server](https://github.com/dictyBase/graphql-server)
+- [graphql-authserver](https://github.com/dictyBase/graphql-authserver)
 - [modware-content](https://github.com/dictyBase/modware-content)
 - [modware-identity](https://github.com/dictyBase/modware-identity)
 - [modware-user](https://github.com/dictyBase/modware-user)
@@ -107,7 +108,8 @@ helm install dictybase/dicty-frontpage --namespace dictybase -n dicty-frontpage 
 
 This app requires the following backend software to be running:
 
-- [authserver](https://github.com/dictyBase/authserver)
+- [graphql-server](https://github.com/dictyBase/graphql-server)
+- [graphql-authserver](https://github.com/dictyBase/graphql-authserver)
 - [modware-identity](https://github.com/dictyBase/modware-identity)
 - [modware-user](https://github.com/dictyBase/modware-user)
 - [dashfn](https://github.com/dictybase-playground/kubeless-gofn/tree/master/dashboard)
