@@ -7,26 +7,19 @@ category: "deployment"
 
 ```
 
-## Dicty Stock Center
+## Prerequisites
 
-### Prerequisites
-
-This app requires the following backend software to be running:
+All frontend web applications require the following backend services to be running:
 
 - [graphql-server](https://github.com/dictyBase/graphql-server)
 - [graphql-authserver](https://github.com/dictyBase/graphql-authserver)
-- [modware-auth](https://github.com/dictyBase/modware-auth)
-- [modware-annotation](https://github.com/dictyBase/modware-annotation)
-- [modware-content](https://github.com/dictyBase/modware-content)
-- [modware-identity](https://github.com/dictyBase/modware-identity)
-- [modware-order](https://github.com/dictyBase/modware-order)
-- [modware-stock](https://github.com/dictyBase/modware-stock)
-- [modware-user](https://github.com/dictyBase/modware-user)
+
+## Dicty Stock Center
 
 **Note:** in order to create GitHub issues and send emails on order submission, the
 appropriate `event-messenger` charts also need to be deployed.
 
-### Installation
+- Installation
 
 ```shell
 helm install dictybase/dicty-stock-center --namespace dictybase -n dicty-stock-center \
@@ -66,17 +59,7 @@ helm install dictybase/upload-slatejs-content --namespace dictybase -f values.ya
 
 ## Genomepage
 
-### Prerequisites
-
-This app requires the following backend software to be running:
-
-- [graphql-server](https://github.com/dictyBase/graphql-server)
-- [graphql-authserver](https://github.com/dictyBase/graphql-authserver)
-- [modware-auth](https://github.com/dictyBase/modware-auth)
-- [modware-identity](https://github.com/dictyBase/modware-identity)
-- [modware-user](https://github.com/dictyBase/modware-user)
-
-### Installation
+- Installation
 
 ```shell
 helm install dictybase/genomepage --namespace dictybase -n genomepage \
@@ -85,17 +68,7 @@ helm install dictybase/genomepage --namespace dictybase -n genomepage \
 
 ## Dicty Frontpage
 
-### Prerequisites
-
-This app requires the following backend software to be running:
-
-- [graphql-server](https://github.com/dictyBase/graphql-server)
-- [graphql-authserver](https://github.com/dictyBase/graphql-authserver)
-- [modware-content](https://github.com/dictyBase/modware-content)
-- [modware-identity](https://github.com/dictyBase/modware-identity)
-- [modware-user](https://github.com/dictyBase/modware-user)
-
-### Installation
+- Installation
 
 ```shell
 helm install dictybase/dicty-frontpage --namespace dictybase -n dicty-frontpage \
@@ -104,17 +77,7 @@ helm install dictybase/dicty-frontpage --namespace dictybase -n dicty-frontpage 
 
 ## DictyAccess
 
-### Prerequisites
-
-This app requires the following backend software to be running:
-
-- [graphql-server](https://github.com/dictyBase/graphql-server)
-- [graphql-authserver](https://github.com/dictyBase/graphql-authserver)
-- [modware-identity](https://github.com/dictyBase/modware-identity)
-- [modware-user](https://github.com/dictyBase/modware-user)
-- [dashfn](https://github.com/dictybase-playground/kubeless-gofn/tree/master/dashboard)
-
-### Installation
+- Installation
 
 ```shell
 helm install dictybase/dictyaccess --namespace dictybase -n dictyaccess \
@@ -123,14 +86,7 @@ helm install dictybase/dictyaccess --namespace dictybase -n dictyaccess \
 
 ## Publication
 
-### Prerequisites
-
-This app requires the following backend software to be running:
-
-- [graphql-server](https://github.com/dictyBase/graphql-server)
-- [pubfn](https://github.com/dictybase-playground/kubeless-gofn/tree/master/publication)
-
-### Installation
+- Installation
 
 ```shell
 helm install dictybase/publication --namespace dictybase -n publication \
