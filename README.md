@@ -3,8 +3,7 @@
 ![GitHub action](https://github.com/dictybase-docker/developer-docs/workflows/GitHub%20Pages%20build/badge.svg)  
 [![Technical debt](https://badgen.net/codeclimate/tech-debt/dictybase-docker/developer-docs)](https://codeclimate.com/github/dictybase-docker/developer-docs/trends/technical_debt)
 [![Issues](https://badgen.net/codeclimate/issues/dictybase-docker/developer-docs)](https://codeclimate.com/github/dictybase-docker/developer-docs/issues)
-[![Maintainability](https://badgen.net/codeclimate/maintainability/dictybase-docker/developer-docs)](https://codeclimate.com/github/dictybase-docker/developer-docs)
-[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=dictybase-docker/developer-docs)](https://dependabot.com)  
+[![Maintainability](https://badgen.net/codeclimate/maintainability/dictybase-docker/developer-docs)](https://codeclimate.com/github/dictybase-docker/developer-docs)  
 ![Issues](https://badgen.net/github/issues/dictybase-docker/developer-docs)
 ![Open Issues](https://badgen.net/github/open-issues/dictybase-docker/developer-docs)
 ![Closed Issues](https://badgen.net/github/closed-issues/dictybase-docker/developer-docs)
@@ -25,6 +24,7 @@
 Static site to display all deployment documentation for dictyBase software. Built using Gatsby.
 
 ## Development
+
 Run `gatsby develop` to start the developmental server.
 
 Do any work in a new branch then open a pull request to merge into `develop` when
