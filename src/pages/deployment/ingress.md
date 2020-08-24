@@ -100,9 +100,9 @@ These will be deployed alongside the various services. This particular sequence
 of deployments should be followed at least for the first time. Here are the
 expected manifests to be deployed.
 
-- Minio storage
+- Minio storage (created when [deployed](/deployment/minio))
 - Auth backend
-- API microservices
+- GraphQL
 - Frontend applications
 - Kubeless functions
 
@@ -129,6 +129,99 @@ ingress:
 
 ```shell
 helm install dictybase/dictybase-auth-ingress --namespace dictybase -n dictybase-auth-ingress -f auth-config.yaml
+```
+
+## GraphQL
+
+- Create an Ingress config YAML.
+
+```yaml
+ingress:
+  annotations:
+    nginx.ingress.kubernetes.io/auth-url: https://ericauth.dictybase.dev/watchmen
+    nginx.ingress.kubernetes.io/auth-method: POST
+  hosts:
+    - name: ericgraphql.dictybase.dev
+      paths:
+        - path: /
+          serviceName: graphql-server
+          servicePort: graphql-server
+  tls:
+    - secretName: dicty-eric-dev-tls
+      hosts:
+        - ericgraphql.dictybase.dev
+```
+
+- Install the chart.
+
+```shell
+helm install dictybase/dictybase-ingress --namespace dictybase -n graphql-ingress -f ingress-graphql.yaml
+```
+
+## Frontend Applications
+
+- Create an Ingress config YAML.
+
+```yaml
+ingress:
+  hosts:
+    - name: eric.dictybase.dev
+      paths:
+        - path: /stockcenter
+          serviceName: stock-center
+          servicePort: stock-center
+        - path: /dictyaccess
+          serviceName: dictyaccess
+          servicePort: dictyaccess
+        - path: /gene
+          serviceName: genomepage
+          servicePort: genomepage
+        - path: /publication
+          serviceName: publication
+          servicePort: publication
+        - path: /
+          serviceName: frontpage
+          servicePort: frontpage
+  tls:
+    - secretName: dicty-eric-dev-tls
+      hosts:
+        - eric.dictybase.dev
+```
+
+- Install the chart.
+
+```shell
+helm install dictybase/dictybase-ingress --namespace dictybase -n dictybase-ingress -f ingress.yaml
+```
+
+## Kubeless
+
+- Create Ingress config YAML.
+
+```yaml
+ingress:
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    nginx.ingress.kubernetes.io/client-body-buffer-size: 250M
+  hosts:
+    - name: ericfunc.dictybase.dev
+      paths:
+        - path: /dashboard/(.*)
+          serviceName: dashfn
+          servicePort: 8080
+        - path: /publications/(.*)
+          serviceName: pubfn
+          servicePort: 8080
+  tls:
+    - secretName: dicty-eric-dev-tls
+      hosts:
+        - ericfunc.dictybase.dev
+```
+
+- Install the chart.
+
+```shell
+helm install dictybase/dictybase-ingress --namespace dictybase -n kubeless-ingress -f ingress-kubeless.yaml
 ```
 
 # Fresh install
