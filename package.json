@@ -17,7 +17,7 @@
     "gatsby-remark-code-buttons": "^2.0.4",
     "gatsby-remark-images": "^3.3.25",
     "gatsby-remark-prismjs": "^3.5.10",
-    "gatsby-remark-table-of-contents": "^0.0.9",
+    "gatsby-remark-table-of-contents": "^0.1.1",
     "gatsby-source-filesystem": "^2.3.24",
     "gatsby-transformer-remark": "^2.8.28",
     "gatsby-transformer-sharp": "^2.5.11",
