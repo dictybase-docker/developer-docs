@@ -7,15 +7,14 @@ category: "deployment"
 
 ```
 
-It is necessary to install a chart to store dictyBase specific configurations.
+It is necessary to install a chart to store certain secrets.
 This guide is for a fresh installation.
 
 ## Set Up Auth Secrets
 
 ### Generate Keys
 
-Generating public and private keys is necessary in order to use both `modware-auth`
-and `authserver`.
+Generating public and private keys is necessary in order to use `auth-api-server`.
 
 ```shell
 openssl genrsa -out app.rsa 2048
@@ -58,7 +57,7 @@ minio:
   secretkey: MINIO_SECRET_KEY...
 ```
 
-Now install the chart using this file (assumed `dicty-config.yaml`).
+Now install the chart using this file (`dicty-config.yaml`).
 
 ```shell
 helm install dictybase/dictybase-configuration -f dicty-config.yaml \

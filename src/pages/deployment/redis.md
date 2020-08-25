@@ -3,22 +3,29 @@ title: "Redis"
 category: "deployment"
 ---
 
-[Redis](https://redis.io) will be used for caching entries and it is installed from the chart [here](https://hub.kubeapps.com/charts/bitnami/redis).
+```toc
 
+```
 
-## Checking redis data in the cluster
+[Redis](https://redis.io) will be used for caching entries and it is installed from [this chart](<(https://hub.kubeapps.com/charts/bitnami/redis)>).
+
+## Checking Redis data in the cluster
+
 Use this process to check the status of data in the redis instance before and after any kind of upgrade.
+
 - Get a shell in kubernetes cluster.
 
 ```shell
 kubectl run --rm -it --restart=Never -n dictybase redis-backup --image=redis:4-alpine3.10 /bin/sh
 ```
+
 - Login to the database
 
 ```shell
 $_> redis-cli -h $REDIS_MASTER_SERVICE_HOST -p $REDIS_MASTER_SERVICE_PORT
-x.x.x.x:6379> 
+x.x.x.x:6379>
 ```
+
 - List keys
 
 ```shell
@@ -26,16 +33,15 @@ x.x.x.x:6379> KEYS *
 ```
 
 ## Upgrading from an existing version
-- Upgrade helm to the highest version of its 2.x.x series, current it should be [v2.16.7](https://github.com/helm/helm/releases/tag/v2.16.7). Make sure both server and client side gets upgraded.
 
-```shell
-$_> helm version
-```
+> #### It's always recommended to [upgrade helm](/deployment/helm) if possible.
+
 - Add helm repository for redis
 
 ```shell
-$_> helm repo add bitnami https://charts.bitnami.com/bitnami 
+$_> helm repo add bitnami https://charts.bitnami.com/bitnami
 ```
+
 - Check the current version of redis installed in the cluster ...
 
 ```shell
@@ -60,9 +66,9 @@ serviceAccount:
 rbac:
   create: true
   role:
-     rules:
+    rules:
       - apiGroups:
-        - extensions
+          - extensions
         resources:
           - podsecuritypolicies
         verbs:
@@ -85,22 +91,24 @@ master:
 
 ```shell
 $_> helm delete redis --purge
-$_> helm install --name redis --namespace dictybase -f dev.yaml bitnami/redis --version 8.1.5 
+$_> helm install --name redis --namespace dictybase -f dev.yaml bitnami/redis --version 8.1.5
 ```
 
 - Then simply upgrade to the 9.x and finally to the latest 10.x version. Though it is
-  not really important to check the data after these upgrades, however make sure that the redis 
+  not really important to check the data after these upgrades, however make sure that the redis
   instance is in running state before performing the helm based upgrade.
 
 ```shell
-$_> helm upgrade redis  --namespace dictybase  -f dev.yaml bitnami/redis --version 9.5.5  
-$_> helm upgrade redis  --namespace dictybase  -f dev.yaml bitnami/redis --version 10.6.12 
+$_> helm upgrade redis  --namespace dictybase  -f dev.yaml bitnami/redis --version 9.5.5
+$_> helm upgrade redis  --namespace dictybase  -f dev.yaml bitnami/redis --version 10.6.12
 ```
+
 - The chart version `10.6.12` will install redis `5.0.9`.
 
 ## Fresh install
+
 Use the above helm value file.
 
 ```shell
-$_> helm install redis  --namespace dictybase  -f dev.yaml bitnami/redis --version 10.6.12 
+$_> helm install redis  --namespace dictybase  -f dev.yaml bitnami/redis --version 10.6.12
 ```

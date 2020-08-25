@@ -3,13 +3,20 @@ title: "Minio (S3)"
 category: "deployment"
 ---
 
+```toc
+
+```
+
 The official chart documentation is [here](https://hub.kubeapps.com/charts/stable/minio).
-# Features used
+
+## Features used
+
 - Standalone
 - SSD persistence storage, make sure you have a defined **custom storageclass** for it.
 - Ingress enabled for web access. The certificate **should have been** generated before the installation.
 
 ## Fresh install
+
 Use the following `yaml` configuration file and save it as `dev.yaml`
 
 ```yaml
@@ -24,7 +31,7 @@ persistence:
 # you can use it to login from the web interface and manage files
 accessKey: ANYTHINGYOUWANT
 secretKey: ITISASECRET
-## ingress defintion, nginx ingress chart is a prerequisite
+## ingress definition, nginx ingress chart is a prerequisite
 ingress:
   enabled: true
   annotations:
@@ -42,17 +49,19 @@ ingress:
 $_> helm install kubernetes-charts/minio --version 5.0.25 -f dev.yaml --name minio --namespace dictybase
 ```
 
-> Creating bucket during installation has been skipped, as that 
-> sometimes leads to a [stuck initcontainer](https://github.com/helm/charts/issues/14014).   
+> Creating bucket during installation has been skipped, as that
+> sometimes leads to a [stuck initcontainer](https://github.com/helm/charts/issues/14014).  
 > So, it's better to create the bucket after the chart is installed.
 
 ## Upgrade
-A simple `helm upgrade` should work, however to err on the side of caution, the buckets needs to be
-backed up.    
+
+A simple `helm upgrade` should work, however to err on the side of caution, the buckets need to be
+backed up.
+
 - Backup to local disk
 
 ```shell
-$_> mc cp -r <server>/<bucket> . 
+$_> mc cp -r <server>/<bucket> .
 ```
 
 - Upgrade to latest version
