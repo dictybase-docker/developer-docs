@@ -52,7 +52,7 @@ Create a YAML values file.
 
 ```yaml
 database:
-  name: auth
+  name: annotation
   user: larry
   password: david
 ```
@@ -69,7 +69,7 @@ Create a YAML values file.
 
 ```yaml
 database:
-  name: auth
+  name: order
   user: larry
   password: david
 ```
@@ -86,7 +86,7 @@ Create a YAML values file.
 
 ```yaml
 database:
-  name: auth
+  name: stock
   user: larry
   password: david
 ```

@@ -7,15 +7,15 @@ category: "deployment"
 
 - Have a `configured (kubectl access)`
   [GKE](https://cloud.google.com/kubernetes-engine/) access.
-- [Setup](/admin) cluster admin access.
-- [Setup](/storageclass) custom storage class to use `SSD` disk.
+- [Setup](/deployment/admin) cluster admin access.
+- [Setup](/deployment/storageclass) custom storage class to use `SSD` disk.
 - This guide assumes only one ArangoDB server instance for each cluster.
 
 ## Fresh Install
 
 ### ArangoDB custom resource definition (CRD)
 
-_version: 0.3.11_
+> #### Version: 0.3.11
 
 Install two charts, a `CRD` and `deployment controller`.
 
@@ -25,8 +25,7 @@ helm install https://github.com/arangodb/kube-arangodb/releases/download/0.3.11/
 --set=DeploymentReplication.Create=false --namespace dictybase
 ```
 
-In the second step we are disabling deployment replication. For details look
-[here](https://github.com/arangodb/kube-arangodb/blob/0.3.11/docs/Manual/Deployment/Kubernetes/Helm.md).
+In the second step we are disabling deployment replication ([details](https://github.com/arangodb/kube-arangodb/blob/0.3.11/docs/Manual/Deployment/Kubernetes/Helm.md)).
 
 ### Install arangodb server (single deployment)
 
@@ -37,7 +36,7 @@ helm install dictybase/arangodb --namespace dictybase
 --set arangodb.single.storage=50Gi
 ```
 
-Here we are using the custom [storage class](/storageclass) and have also
+Here we are using the custom [storage class](/deployment/storageclass) and have also
 set up the storage space. ArangoDB version `3.5.4` is also installed by
 default. To see what else you can customize, check out the chart
 [README](https://github.com/dictybase-docker/kubernetes-charts/tree/master/arangodb).
@@ -56,7 +55,7 @@ pick a different version from
 ##### Very important notes
 
 - Storage space of the database can only be increased, decreasing it is not
-  possible (apparently PVC cannot be shrinked) The pod must be restarted to
+  possible (apparently PVC cannot be shrinked). The pod must be restarted to
   increase the storage.
   > `kubectl delete pod [POD NAME] -n dictybase`
 - Use the helm chart directly to upgrade for patch versions (3.3.11 -> 3.3.23).
@@ -66,8 +65,9 @@ pick a different version from
 ### Remove deployment (NOT CRD)
 
 To upgrade the operator to the latest version with Helm, you have to
-delete the previous deployment and then install the latest. **HOWEVER**:
-You _must not delete_ the custom resource definitions (CRDs), or your
+delete the previous deployment and then install the latest.
+
+**HOWEVER**: You _must not delete_ the custom resource definitions (CRDs), or your
 ArangoDB deployments will be deleted!
 
 Therefore, you have to use `helm ls` to find the deployments for the
@@ -75,7 +75,7 @@ operator (`kube-arangodb`) and use `helm delete` to delete them using the
 automatically generated deployment names. Here is an example of a `helm list` output:
 
 ```
-% helm list
+% helm ls
 NAME            	REVISION	UPDATED                 	STATUS  	CHART                               	APP VERSION	NAMESPACE
 steely-mule     	1       	Sun Mar 31 21:11:07 2019	DEPLOYED	kube-arangodb-crd-0.3.11             	           	default
 vetoed-ladybird 	1       	Mon Apr  8 11:36:58 2019	DEPLOYED	kube-arangodb-0.3.11                	           	default
@@ -129,10 +129,9 @@ Install the matching operator for `ArangoDeployment`. Note the new format for di
 Release 0.3.16 is the last of that minor version. From there you can upgrade the same way to `0.4.0` and its
 patch versions.
 
-Using database version `3.5.4` with this deployment is fine. See the notes below on how to upgrade
-the database version.
+Using database version `3.5.4` with this deployment is fine.
 
-## Create new databases(in existing server instance)
+## Create new databases (in existing server instance)
 
 ```yaml
 database:

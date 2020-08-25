@@ -14,16 +14,15 @@ category: "deployment"
 9. [Install ArangoDB](/deployment/arangodb)
 10. [Install dictybase-configuration chart](/deployment/dictyconfig)
 11. [Install API services](/deployment/backend)
-12. [Install Kubeless functions](/deployment/kubeless)
-13. Install graphql-server
-14. Install graphql-authserver
-15. Install event-messenger
+12. Install graphql-server
+13. Install graphql-authserver
+14. Install event-messenger
     - event-messenger-email
     - event-messenger-issue
-16. Load data
+15. Load data
     - load-users
     - content-loader
     - assign-roles-permissions
     - load-identity
     - modware-import (need to upload the argo workflow first?)
-17. [Install frontend web apps](/deployment/frontend)
+16. [Install frontend web apps](/deployment/frontend)

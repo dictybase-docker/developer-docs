@@ -14,7 +14,7 @@ manages external access to services in a Kubernetes cluster. To configure Ingres
 - Setup [cert-manager](/deployment/certificate) for https access.
 - ingress manifests for opening up services
 
-> #### It's always recommend to [upgrade helm](/deployment/helm) if possible.
+> #### It's always recommended to [upgrade helm](/deployment/helm) if possible.
 
 # Upgrade nginx-controller
 
@@ -74,7 +74,7 @@ helm repo update
 
 ## Install the chart
 
-Chart version [2.11.1](https://github.com/kubernetes/ingress-nginx/releases/tag/ingress-nginx-2.11.1)
+> #### Chart version [2.11.1](https://github.com/kubernetes/ingress-nginx/releases/tag/ingress-nginx-2.11.1)
 
 - Create the following `yaml` value file
 
@@ -88,7 +88,7 @@ controller:
 helm install ingress-nginx/ingress-nginx -n ingress-nginx --version 2.11.1 -f values.yaml
 ```
 
-- Verify the loadbalancer ip
+- Verify the loadbalancer IP
 
 ```shell
 kubectl get svc  -n default ingress-nginx-controller -o jsonpath='{.status.loadBalancer.ingress[0].ip}'
@@ -100,7 +100,7 @@ These will be deployed alongside the various services. This particular sequence
 of deployments should be followed at least for the first time. Here are the
 expected manifests to be deployed.
 
-- Minio storage (created when [deployed](/deployment/minio))
+- Minio storage ([created when deployed](/deployment/minio))
 - Auth backend
 - GraphQL
 - Frontend applications
@@ -133,7 +133,7 @@ helm install dictybase/dictybase-auth-ingress --namespace dictybase -n dictybase
 
 ## GraphQL
 
-- Create an Ingress config YAML.
+- Create an Ingress config YAML with appropriate auth annotations.
 
 ```yaml
 ingress:
@@ -196,7 +196,7 @@ helm install dictybase/dictybase-ingress --namespace dictybase -n dictybase-ingr
 
 ## Kubeless
 
-- Create Ingress config YAML.
+- Create Ingress config YAML with updated annotations.
 
 ```yaml
 ingress:

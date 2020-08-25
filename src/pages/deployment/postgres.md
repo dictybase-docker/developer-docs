@@ -5,12 +5,12 @@ category: "deployment"
 
 The PostgreSQL backend is currently used by the following API services:
 
-- user-api
-- content-api
+- user-api-server
+- content-api-server
 
 ## Installation
 
-Create `YAML` values file.
+- Create `YAML` values file.
 
 ```yaml
 postgresPassword: somepass...
@@ -18,7 +18,7 @@ dictycontentPassword: somepassagain...
 dictyuserPassword: somepassagain...
 ```
 
-Deploy the chart.
+- Deploy the chart.
 
 ```shell
 helm install dictybase/dictycontent-postgres --namespace dictybase -f values.yaml \
