@@ -3,6 +3,10 @@ title: "ArangoDB"
 category: "deployment"
 ---
 
+```toc
+
+```
+
 ## Prerequisites
 
 - Have a `configured (kubectl access)`
