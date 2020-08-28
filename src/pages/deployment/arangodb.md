@@ -19,29 +19,28 @@ category: "deployment"
 
 ### ArangoDB custom resource definition (CRD)
 
-> #### Version: 0.3.11
+> #### Version: 1.0.6
 
 Install two charts, a `CRD` and `deployment controller`.
 
 ```shell
-helm install https://github.com/arangodb/kube-arangodb/releases/download/0.3.11/kube-arangodb-crd.tgz
-helm install https://github.com/arangodb/kube-arangodb/releases/download/0.3.11/kube-arangodb.tgz \
---set=DeploymentReplication.Create=false --namespace dictybase
+helm install https://github.com/arangodb/kube-arangodb/releases/download/1.0.6/kube-arangodb-crd-1.0.6.tgz
+helm install https://github.com/arangodb/kube-arangodb/releases/download/1.0.6/kube-arangodb-1.0.6.tgz \
+--set=operator.features.deploymentReplications=false --namespace dictybase
 ```
 
-In the second step we are disabling deployment replication ([details](https://github.com/arangodb/kube-arangodb/blob/0.3.11/docs/Manual/Deployment/Kubernetes/Helm.md)).
+In the second step we are [disabling deployment replication](https://www.arangodb.com/docs/stable/deployment-kubernetes-helm.html#operatorfeaturesdeploymentreplications).
 
 ### Install arangodb server (single deployment)
 
 ```shell
 helm repo update
-helm install dictybase/arangodb --namespace dictybase
---set arangodb.dbservers.storageClass=fast \
+helm install dictybase/arangodb --namespace dictybase --set arangodb.dbservers.storageClass=fast \
 --set arangodb.single.storage=50Gi
 ```
 
 Here we are using the custom [storage class](/deployment/storageclass) and have also
-set up the storage space. ArangoDB version `3.5.4` is also installed by
+set up the storage space. ArangoDB version `3.6.5` is also installed by
 default. To see what else you can customize, check out the chart
 [README](https://github.com/dictybase-docker/kubernetes-charts/tree/master/arangodb).
 
@@ -49,21 +48,22 @@ default. To see what else you can customize, check out the chart
 
 ### Upgrade server instance
 
-By default the chart will install the ArangoDB version `3.5.4`. To use another,
-pick a different version from
-[here](https://hub.docker.com/_/arangodb/?tab=tags)
+By default the chart will install the ArangoDB version `3.6.5`. To use another,
+[pick a different version](https://hub.docker.com/_/arangodb/?tab=tags).
 
-> `$_> helm repo update`  
-> `$_> helm upgrade [RELEASE NAME] dictybase/arangodb --set=image.tag=[VERSION] --namespace dictybase`
+```shell
+helm repo update
+helm upgrade [RELEASE NAME] dictybase/arangodb --set=image.tag=[VERSION] --namespace dictybase
+```
 
-##### Very important notes
+#### Very important notes
 
 - Storage space of the database can only be increased, decreasing it is not
   possible (apparently PVC cannot be shrinked). The pod must be restarted to
   increase the storage.
   > `kubectl delete pod [POD NAME] -n dictybase`
-- Use the helm chart directly to upgrade for patch versions (3.3.11 -> 3.3.23).
-  To upgrade the minor versions (3.3.23 -> 3.4.5), you should backup and restore
+- Use the helm chart directly to upgrade for patch versions (3.6.3 -> 3.6.5).
+  To upgrade the minor versions (3.6.5 -> 3.7.2), you should backup and restore
   the database content in addition to the Helm chart upgrade process.
 
 ### Remove deployment (NOT CRD)
@@ -81,59 +81,36 @@ automatically generated deployment names. Here is an example of a `helm list` ou
 ```
 % helm ls
 NAME            	REVISION	UPDATED                 	STATUS  	CHART                               	APP VERSION	NAMESPACE
-steely-mule     	1       	Sun Mar 31 21:11:07 2019	DEPLOYED	kube-arangodb-crd-0.3.11             	           	default
-vetoed-ladybird 	1       	Mon Apr  8 11:36:58 2019	DEPLOYED	kube-arangodb-0.3.11                	           	default
+steely-mule     	1       	Sun Mar 31 21:11:07 2019	DEPLOYED	kube-arangodb-crd-1.0.6             	           	default
+vetoed-ladybird 	1       	Mon Apr  8 11:36:58 2019	DEPLOYED	kube-arangodb-1.0.6                	           	default
 ```
 
 So here, you would have to enter
 
-> `$_> helm delete vetoed-ladybird`
+> `helm delete vetoed-ladybird`
 
 Make sure **not to delete `steely-mule`**. See official
 [README](https://github.com/arangodb/kube-arangodb/blob/master/README.md) for
 more information. If wanting to upgrade to several releases ahead, it is
-advised to upgrade incrementally (i.e. `0.3.8` to `0.3.10` to `0.3.11`, etc.).
+advised to upgrade incrementally (i.e. `1.0.3` to `1.0.5` to `1.0.6`, etc.).
 
 ### Upgrade CRD and install new Deployment
 
 Upgrade the existing CRD (optional).
 
-> `$_> helm upgrade [RELEASE NAME] \`  
->  `https://github.com/arangodb/kube-arangodb/releases/download/[VERSION]/kube-arangodb-crd.tgz`
+```shell
+helm upgrade [RELEASE NAME] https://github.com/arangodb/kube-arangodb/releases/download/[VERSION]/kube-arangodb-crd-[VERSION].tgz
+```
 
 Next, install the operator for `ArangoDeployment` while making sure to disable deployment replication.
 
-> `$_> helm install \`  
->  `https://github.com/arangodb/kube-arangodb/releases/download/[VERSION]/kube-arangodb.tgz \`  
->  `--set=DeploymentReplication.Create=false --namespace dictybase`
+```shell
+helm install https://github.com/arangodb/kube-arangodb/releases/download/[VERSION]/kube-arangodb-[VERSION].tgz \
+--set=operator.features.deploymentReplications=false --namespace dictybase
+```
 
 Verify that everything is working as expected, then proceed to the next version.
 Repeat as necessary.
-
-### Upgrading to and beyond version 0.3.16
-
-Starting with version `0.3.16`, a few changes were made to the official Helm charts. The upgrade
-process remains as above, however it has some differences in naming conventions.
-
-First delete the existing deployment like above.
-
-> `$_> helm delete [RELEASE NAME]`
-
-Upgrade the existing CRD to 0.3.16. Note that the filename now includes the version number.
-
-> `$_> helm upgrade [RELEASE NAME] \`  
->  `https://github.com/arangodb/kube-arangodb/releases/download/0.3.16/kube-arangodb-crd-0.3.16.tgz`
-
-Install the matching operator for `ArangoDeployment`. Note the new format for disabling deployment replication.
-
-> `$_> helm install \`  
->  `https://github.com/arangodb/kube-arangodb/releases/download/[VERSION]/kube-arangodb-[VERSION].tgz \`  
->  `--set operators.features.deploymentReplications=false --namespace dictybase`
-
-Release 0.3.16 is the last of that minor version. From there you can upgrade the same way to `0.4.0` and its
-patch versions.
-
-Using database version `3.5.4` with this deployment is fine.
 
 ## Create new databases (in existing server instance)
 
