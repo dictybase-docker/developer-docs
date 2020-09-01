@@ -16,7 +16,7 @@
     "gatsby-remark-autolink-headers": "^2.3.11",
     "gatsby-remark-code-buttons": "^2.0.4",
     "gatsby-remark-images": "^3.3.25",
-    "gatsby-remark-prismjs": "^3.5.10",
+    "gatsby-remark-prismjs": "^3.5.11",
     "gatsby-remark-table-of-contents": "^0.1.1",
     "gatsby-source-filesystem": "^2.3.27",
     "gatsby-transformer-remark": "^2.8.28",
