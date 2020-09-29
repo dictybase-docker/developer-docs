@@ -19,10 +19,14 @@ body {
 }
 a {
   background-color: transparent;
+  color: rgb(3, 102, 214);
   text-decoration: none;
   -webkit-text-decoration-skip: objects;
 }
 a:active,
 a:hover {
   outline-width: 0;
+}
+a:visited {
+  color: rgb(3, 102, 214);
 }
