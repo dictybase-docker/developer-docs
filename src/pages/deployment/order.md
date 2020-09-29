@@ -16,9 +16,7 @@ category: "deployment"
 11. [Install dictybase-configuration chart](/deployment/dictyconfig)
 12. [Install API services](/deployment/backend)
 13. [Install GraphQL](/deployment/graphql)
-14. Install event-messenger
-    - event-messenger-email
-    - event-messenger-issue
+14. [Install event-messenger](/deployment/eventmessenger)
 15. Load data
     - load-users
     - content-loader
