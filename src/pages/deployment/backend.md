@@ -23,22 +23,10 @@ helm install dictybase/user-api-server --namespace dictybase -n user-api-server
 
 ## Services Using ArangoDB
 
-### Identity
+### Prerequisites
 
-Create a YAML values file.
-
-```yaml
-database:
-  name: auth
-  user: larry
-  password: david
-```
-
-Install the chart.
-
-```shell
-helm install dictybase/identity-api-server -f values.yaml --namespace dictybase -n identity-api-server
-```
+It is expected that [dictybase-configuration](/deployment/dictyconfig) has been deployed with a list
+of ArangoDB databases.
 
 ### Auth
 
@@ -48,51 +36,24 @@ helm install dictybase/auth-api-server --namespace dictybase -n auth-api-server
 
 ### Annotation
 
-Create a YAML values file.
-
-```yaml
-database:
-  name: annotation
-  user: larry
-  password: david
+```shell
+helm install dictybase/annotation-api-server  --namespace dictybase -n annotation-api-server
 ```
 
-Install the chart.
+### Identity
 
 ```shell
-helm install dictybase/annotation-api-server -f values.yaml --namespace dictybase -n annotation-api-server
+helm install dictybase/identity-api-server --namespace dictybase -n identity-api-server
 ```
 
 ### Order
 
-Create a YAML values file.
-
-```yaml
-database:
-  name: order
-  user: larry
-  password: david
-```
-
-Install the chart.
-
 ```shell
-helm install dictybase/order-api-server -f values.yaml --namespace dictybase -n order-api-server
+helm install dictybase/order-api-server  --namespace dictybase -n order-api-server
 ```
 
 ### Stock
 
-Create a YAML values file.
-
-```yaml
-database:
-  name: stock
-  user: larry
-  password: david
-```
-
-Install the chart.
-
 ```shell
-helm install dictybase/stock-api-server -f values.yaml --namespace dictybase -n stock-api-server
+helm install dictybase/stock-api-server  --namespace dictybase -n stock-api-server
 ```
