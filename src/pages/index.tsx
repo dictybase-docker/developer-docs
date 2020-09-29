@@ -15,7 +15,7 @@ const IndexPage = ({ data }) => {
 
 const query = graphql`
   query {
-    markdownRemark(fields: { slug: { eq: "/deployment/concept/" } }) {
+    markdownRemark(fields: { slug: { eq: "/deployment/order/" } }) {
       html
       frontmatter {
         title
