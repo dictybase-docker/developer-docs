@@ -7,7 +7,7 @@ category: "deployment"
 
 ```
 
-It is necessary to install a chart to store certain secrets.
+It is necessary to install a chart to store certain secrets and configurations.
 This guide is for a fresh installation.
 
 ## Set Up Auth Secrets
@@ -44,12 +44,27 @@ arangodb:
   user: elaine
   password: benes
   databases: # databases that are tied to backend applications
-    - app: modware-stock
-      name: stock
     - app: modware-annotation
       name: annotation
+    - app: modware-auth
+      name: auth
     - app: modware-order
       name: order
+    - app: modware-stock
+      name: stock
+endpoints:
+  organism: https://raw.githubusercontent.com/dictyBase/migration-data/master/downloads/organisms-with-citations.dev.json
+  publication: https://ericfunc.dictybase.dev/publications
+eventMessenger:
+  github:
+    token: GITHUB_TOKEN...
+    owner: dictybase-playground
+    repository: learn-gh-action
+  email:
+    domain: ericmail.dictybase.dev
+    sender: noreply@ericmail.dictybase.dev
+    senderName: Art Vandelay
+    apiKey: MAILGUN_API_KEY...
 slack:
   token: SLACK_API_TOKEN...
 minio:
