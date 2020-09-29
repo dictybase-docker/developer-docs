@@ -19,7 +19,7 @@ All frontend web applications require the following backend services to be runni
 **Note:** in order to create GitHub issues and send emails on order submission, the
 appropriate `event-messenger` charts also need to be deployed.
 
-- Installation
+### Installation
 
 ```shell
 helm install dictybase/dicty-stock-center --namespace dictybase -n dicty-stock-center \
@@ -46,15 +46,13 @@ userId: 1635
 2. Install the `convert-draftjs-content` chart.
 
 ```shell
-helm install dictybase/convert-draftjs-content --namespace dictybase -f values.yaml \
---set image.tag=develop-bce5069
+helm install dictybase/convert-draftjs-content --namespace dictybase -f values.yaml --set image.tag=develop-bce5069
 ```
 
 3. Install the `upload-slatejs-content` chart using the same value file.
 
 ```shell
-helm install dictybase/upload-slatejs-content --namespace dictybase -f values.yaml \
---set image.tag=develop-bce5069
+helm install dictybase/upload-slatejs-content --namespace dictybase -f values.yaml --set image.tag=develop-bce5069
 ```
 
 ## Genomepage
@@ -62,8 +60,7 @@ helm install dictybase/upload-slatejs-content --namespace dictybase -f values.ya
 - Installation
 
 ```shell
-helm install dictybase/genomepage --namespace dictybase -n genomepage \
---set image.tag=YOUR_TAG_HERE
+helm install dictybase/genomepage --namespace dictybase -n genomepage --set image.tag=YOUR_TAG_HERE
 ```
 
 ## Dicty Frontpage
@@ -71,8 +68,7 @@ helm install dictybase/genomepage --namespace dictybase -n genomepage \
 - Installation
 
 ```shell
-helm install dictybase/dicty-frontpage --namespace dictybase -n dicty-frontpage \
---set image.tag=YOUR_TAG_HERE
+helm install dictybase/dicty-frontpage --namespace dictybase -n dicty-frontpage --set image.tag=YOUR_TAG_HERE
 ```
 
 ## DictyAccess
@@ -80,8 +76,7 @@ helm install dictybase/dicty-frontpage --namespace dictybase -n dicty-frontpage 
 - Installation
 
 ```shell
-helm install dictybase/dictyaccess --namespace dictybase -n dictyaccess \
---set image.tag=YOUR_TAG_HERE
+helm install dictybase/dictyaccess --namespace dictybase -n dictyaccess --set image.tag=YOUR_TAG_HERE
 ```
 
 ## Publication
@@ -89,6 +84,5 @@ helm install dictybase/dictyaccess --namespace dictybase -n dictyaccess \
 - Installation
 
 ```shell
-helm install dictybase/publication --namespace dictybase -n publication \
---set image.tag=YOUR_TAG_HERE
+helm install dictybase/publication --namespace dictybase -n publication --set image.tag=YOUR_TAG_HERE
 ```

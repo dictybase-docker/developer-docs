@@ -12,8 +12,8 @@ The official chart documentation is [here](https://hub.kubeapps.com/charts/stabl
 ## Features used
 
 - Standalone
-- SSD persistence storage, make sure you have a defined **custom storageclass** for it.
-- Ingress enabled for web access. The certificate **should have been** generated before the installation.
+- SSD persistence storage, make sure you have a defined [custom storageclass](/deployment/minio) for it.
+- [Ingress](/deployment/ingress) enabled for web access. The certificate **should have been** generated before the installation.
 
 ## Fresh install
 
