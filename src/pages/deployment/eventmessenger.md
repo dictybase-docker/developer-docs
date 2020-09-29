@@ -20,6 +20,10 @@ Currently there are two charts that need to be installed to handle DSC orders.
 
 This chart is used to send emails when a new stock order comes through.
 
+### Prerequisites
+
+- [pubfn](https://github.com/dictybase-playground/kubeless-gofn/tree/master/publication)
+
 ### Installation
 
 ```shell
@@ -29,6 +33,12 @@ helm install deployments/charts/event-messenger-email -n event-messenger-email -
 ## event-messenger-issue
 
 This chart is used to create GitHub Issues when a new stock order comes through.
+
+### Prerequisites
+
+- [modware-annotation](https://github.com/dictyBase/modware-annotation)
+- [modware-stock](https://github.com/dictyBase/modware-stock)
+- [modware-user](https://github.com/dictyBase/modware-user)
 
 ### Installation
 
