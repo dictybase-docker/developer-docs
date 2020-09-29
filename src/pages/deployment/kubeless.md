@@ -19,8 +19,8 @@ has to be removed first.
 - List and then remove existing functions
 
 ```shell
-kubeless functions ls -n dictybase
-kubeless functions delete <NAME HERE> -n dictybase
+kubeless function ls -n dictybase
+kubeless function delete <NAME HERE> -n dictybase
 ```
 
 > Remember to use any of the `kubectl` or `helm` based removal command.
