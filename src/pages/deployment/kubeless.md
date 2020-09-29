@@ -47,7 +47,7 @@ helm delete kubeless --purge
 
 ```shell
 kubectl create ns kubeless
-helm install dictybase/kubeless --version 2.2.0 --name kubeless --namespace kubeless -f dev.yaml
+helm install dictybase/kubeless --version 2.2.0 --name kubeless --namespace kubeless --set rbac.create=true
 ```
 
 - Download and install the latest [kubeless binary](https://github.com/kubeless/kubeless/releases).
