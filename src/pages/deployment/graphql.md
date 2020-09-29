@@ -9,6 +9,12 @@ category: "deployment"
 
 Two servers needed to be deployed: the normal GraphQL server and an authserver.
 
+## Prerequisites (for both)
+
+Both servers expect the `dictybase-configuration` chart to be deployed with all necessary values.
+
+- [dictybase-configuration](/deployment/dictybase-configuration)
+
 ## GraphQL Server
 
 ### Prerequisites
@@ -27,24 +33,13 @@ All [backend services](/deployment/backend) need to be installed.
 
 ### Installation
 
-- Create custom config file (`gql.yaml`)
-
-```yaml
-endpoints:
-  publication: https://ericfunc.dictybase.dev/publications
-```
-
 - Install chart
 
 ```shell
-helm install dictybase/graphql-server --namespace dictybase -n graphql-server -f gql.yaml
+helm install dictybase/graphql-server --namespace dictybase -n graphql-server
 ```
 
 ## GraphQL Authserver
-
-### Prerequisites
-
-- [dictybase-configuration](/deployment/dictybase-configuration)
 
 ### Installation
 
