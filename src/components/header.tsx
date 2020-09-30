@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   },
   link: {
     margin: theme.spacing(1, 1.5),
-    color: "#fff",
+    color: "#fff !important",
   },
 }))
 
