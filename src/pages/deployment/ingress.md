@@ -100,19 +100,41 @@ These will be deployed alongside the various services. This particular sequence
 of deployments should be followed at least for the first time. Here are the
 expected manifests to be deployed.
 
-- Minio storage ([created when deployed](/deployment/minio))
-- Auth backend
-- GraphQL
+- Minio storage
+- GraphQL auth backend
+- GraphQL backend
 - Frontend applications
 - Kubeless functions
 
-## Auth backend
+The `GraphQL` backend depends on the auth backend, so the auth backend have to be deployed first. [Certificates](/deployment/certificate) has to be installed and configured for secured(https) ingress access.
 
-- Create an Ingress config YAML. This assumes that the `graphql-authserver` has been
-  deployed.
+## Rule of thumb for writing and deploying ingress manifests
+- Use a single `issuer` for all the ingresses in a cluster.
+- Use a single domain for every ingresses. For every new domain, create a new manifests.
+- Every ingress should have a unique tls name within a particular namespace.
+- Try to use a consistent naming for ingresses and tlses.
 
+## Storage backend
 ```yaml
 ingress:
+  annotations:
+    cert-manager.io/issuer: dictybase-devsidd
+  hosts:
+    - name: siddstorage.dictybase.dev
+      paths:
+        - path: /
+          serviceName: minio
+          servicePort: 9000
+  tls:
+    - secretName: devsidd-storage-tls
+      hosts:
+        - siddstorage.dictybase.dev
+```
+## Auth backend
+```yaml
+ingress:
+  annotations:
+    cert-manager.io/issuer: dictybase-ericdev
   hosts:
     - name: ericauth.dictybase.dev
       paths:
@@ -120,26 +142,18 @@ ingress:
           serviceName: gql-authserver
           servicePort: gql-authserver
   tls:
-    - secretName: dicty-eric-dev-tls
+    - secretName: ericdev-graphql-auth-tls
       hosts:
         - ericauth.dictybase.dev
 ```
 
-- Install the chart.
-
-```shell
-helm install dictybase/dictybase-auth-ingress --namespace dictybase -n dictybase-auth-ingress -f auth-config.yaml
-```
-
 ## GraphQL
-
-- Create an Ingress config YAML with appropriate auth annotations.
-
 ```yaml
 ingress:
   annotations:
     nginx.ingress.kubernetes.io/auth-url: https://ericauth.dictybase.dev/watchmen
     nginx.ingress.kubernetes.io/auth-method: POST
+    cert-manager.io/issuer: dictybase-ericdev
   hosts:
     - name: ericgraphql.dictybase.dev
       paths:
@@ -147,23 +161,15 @@ ingress:
           serviceName: graphql-server
           servicePort: graphql-server
   tls:
-    - secretName: dicty-eric-dev-tls
+    - secretName: ericdev-graphql-tls
       hosts:
         - ericgraphql.dictybase.dev
 ```
-
-- Install the chart.
-
-```shell
-helm install dictybase/dictybase-ingress --namespace dictybase -n graphql-ingress -f ingress-graphql.yaml
-```
-
 ## Frontend Applications
-
-- Create an Ingress config YAML.
-
 ```yaml
 ingress:
+  annotations:
+    cert-manager.io/issuer: dictybase-ericdev
   hosts:
     - name: eric.dictybase.dev
       paths:
@@ -183,26 +189,16 @@ ingress:
           serviceName: frontpage
           servicePort: frontpage
   tls:
-    - secretName: dicty-eric-dev-tls
+    - secretName: ericdev-frontend-tls
       hosts:
         - eric.dictybase.dev
 ```
-
-- Install the chart.
-
-```shell
-helm install dictybase/dictybase-ingress --namespace dictybase -n dictybase-ingress -f ingress.yaml
-```
-
 ## Kubeless
-
-- Create Ingress config YAML with updated annotations.
-
 ```yaml
 ingress:
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /$1
-    nginx.ingress.kubernetes.io/client-body-buffer-size: 250M
+    cert-manager.io/issuer: dictybase-ericdev
   hosts:
     - name: ericfunc.dictybase.dev
       paths:
@@ -213,15 +209,15 @@ ingress:
           serviceName: pubfn
           servicePort: 8080
   tls:
-    - secretName: dicty-eric-dev-tls
+    - secretName: ericdev-kubeless-tls
       hosts:
         - ericfunc.dictybase.dev
 ```
 
-- Install the chart.
+## Install the charts
 
 ```shell
-helm install dictybase/dictybase-ingress --namespace dictybase -n kubeless-ingress -f ingress-kubeless.yaml
+helm install dictybase/dictybase-ingress --namespace dictybase -n <ingress name> -f <manifestname>.yaml
 ```
 
 # Fresh install
