@@ -13,7 +13,7 @@
     "gatsby-plugin-offline": "^3.2.38",
     "gatsby-plugin-react-helmet": "^3.3.14",
     "gatsby-plugin-sharp": "^2.6.43",
-    "gatsby-remark-autolink-headers": "^2.3.14",
+    "gatsby-remark-autolink-headers": "^2.3.16",
     "gatsby-remark-code-buttons": "^2.0.4",
     "gatsby-remark-images": "^3.3.40",
     "gatsby-remark-prismjs": "^3.5.13",
