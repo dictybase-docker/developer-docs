@@ -4,6 +4,8 @@ section: Deployment
 order: 3
 ---
 
+## Custom Storage Class
+
 By default, GKE uses a `standard (pd-standard)` disk as the default [storage
 class](https://kubernetes.io/docs/concepts/storage/storage-classes/). Here we
 setup a custom storage class backed by `ssd disk`.
@@ -24,7 +26,9 @@ EOF
 
 Verify by running
 
-`$_> kubectl get sc`
+```shell
+kubectl get sc
+```
 
 ##### Note
 

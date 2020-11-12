@@ -4,7 +4,11 @@ section: Deployment
 order: 8
 ---
 
-# Fresh install
+# Certificates
+
+Issuer and certificates.
+
+## Fresh install
 
 _Chart version [0.15.2](https://hub.helm.sh/charts/jetstack/cert-manager/v0.15.2)_
 
@@ -15,7 +19,7 @@ helm repo update
 helm install jetstack/cert-manager --name cert-manager --namespace cert-manager --version v0.15.2 --set installCRDs=true
 ```
 
-# Issuer and Certificate for https access
+## Issuer and Certificate for HTTPs access
 
 To generate an `Issuer` resource, create the following helm value file...
 
@@ -57,28 +61,28 @@ The `Certificate` should be created by `cert-manager`. Check the presence of cer
 kubectl get certificate -n dictybase
 ```
 
-## In case of existing ingress
+### In case of existing ingress
 
 - Add only the `cert-manager.io/issuer` annotation. The `tls` configuration is not needed for an existing secret.
 - To use the same certificate for multiple ingress,
   - Use the same secret in the `tls` configuration.
   - Do not need to add the `cert-manager` annotation for more than one ingress.
 
-# Upgrading existing cert manager
+## Upgrading existing cert manager
 
 In case of breaking changes or bump in multiple versions it's advisable to remove and do a fresh
 install of latest cert-manager using helm chart.
 
-## Backup secrets referenced by issue and certificate
+### Backup secrets referenced by issue and certificate
 
-### Extract the secret names
+#### Extract the secret names
 
 ```shell
 kubectl get issuers --all-namespaces -o jsonpath='{.items[*].spec.ca.secretName}'
 kubectl get issuers --all-namespaces -o jsonpath='{.items[*].spec.acme.privateKeySecretRef.name}'
 ```
 
-### Backup their manifests
+#### Backup their manifests
 
 ```shell
 kubectl get secret -n cert-manager -o yaml cert-manager-webhook-ca > cert-manager-webhook-ca.secret
@@ -88,16 +92,16 @@ kubectl get secret -n dictybase -o yaml  dictybase-devsidd > dictybase-devsidd.s
 The name of the secret in `dictybase` namespace might vary, so change the name accordingly.  
 **Note:** The secrets can be used to transfers the issuers to a different cluster.
 
-## Delete existing cert-manager
+### Delete existing cert-manager
 
-### Remove chart and namespaces
+#### Remove chart and namespaces
 
 ```shell
 helm delete cert-manager --purge
 kubectl delete namespace cert-manager
 ```
 
-### Remove existing CRDs (change `0.8` to your installed version if necessary)
+#### Remove existing CRDs (change `0.8` to your installed version if necessary)
 
 ```shell
 kubectl delete -f https://raw.githubusercontent.com/jetstack/cert-manager/release-0.8/deploy/manifests/00-crds.yaml
@@ -109,7 +113,7 @@ kubectl delete -f https://raw.githubusercontent.com/jetstack/cert-manager/releas
 kubectl get crd | grep certmanager.k8s.io
 ```
 
-### Next step
+#### Next step
 
 Removing `cert-manager` will remove all issuers and certificate from the
 cluster while keeping all secrets referenced by issuers and ingresses. So,

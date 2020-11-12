@@ -4,6 +4,8 @@ section: Deployment
 order: 7
 ---
 
+# PostgreSQL
+
 The PostgreSQL backend is currently used by the following API services:
 
 - user-api-server
@@ -26,7 +28,7 @@ helm install dictybase/dictycontent-postgres --namespace dictybase -f values.yam
 -n dictycontent-postgres
 ```
 
-### Load Schema
+## Load Schema
 
 Two schemas also needed to be loaded.
 
