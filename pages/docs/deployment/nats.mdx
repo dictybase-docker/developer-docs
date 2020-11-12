@@ -4,12 +4,14 @@ section: Deployment
 order: 4
 ---
 
+# NATS
+
 [NATS](https://nats.io/) is an open-source, cloud-native messaging system.
 
-# Upgrading operator
+## Upgrading operator
 
 > This step is only necessary in case of installing a backward incompatible operator version.
-> Otherwise, simple upgrade the operator using helm.
+> Otherwise, simply upgrade the operator using helm.
 
 - Remove the server and operator first.
 
@@ -18,14 +20,14 @@ helm delete nats-operator --purge
 helm delete nats --purge
 ```
 
-- Then remove the crds.
+- Then remove the CRDs.
 
 ```shell
 kubectl delete crd natsserviceroles.nats.io
 kubectl delete crd natsclusters.nats.io
 ```
 
-# Fresh install
+## Fresh install
 
 - Create the following yaml config(`values`) file.
 
@@ -53,7 +55,7 @@ kubectl get crd | grep nats
 helm install dictybase/nats --version 0.0.3 --name nats --namespace dictybase
 ```
 
-# Extra sauce (syncing the operator chart)
+## Extra sauce (syncing the operator chart)
 
 The operator chart in the dictybase `helm repository` is packaged from the
 upstream [repository](https://github.com/nats-io/nats-operator). To keep it

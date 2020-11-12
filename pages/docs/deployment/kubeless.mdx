@@ -4,11 +4,13 @@ section: Deployment
 order: 5
 ---
 
+# Kubeless
+
 [Kubeless](https://kubeless.io/) is a Kubernetes-native serverless framework to
 build applications with the [FaaS](https://en.wikipedia.org/wiki/Function_as_a_service)
 model.
 
-# Upgrade
+## Upgrade
 
 Kubeless currently lacks any direct upgrade process, so the existing version
 has to be removed first.
@@ -40,7 +42,7 @@ helm delete kubeless --purge
 - Remove the existing kubeless client binary.
 - Continue with the fresh install process.
 
-# Fresh install
+## Fresh install
 
 ```shell
 kubectl create ns kubeless
@@ -55,8 +57,6 @@ previous functions. At this time you will only need to reinstall
 - `dashboard` ([docs](https://github.com/dictybase-playground/kubeless-gofn/tree/master/dashboard))
 - `publication` ([docs](https://github.com/dictybase-playground/kubeless-gofn/tree/master/publication))
 
-> **Note**
-
 It is also assumed that the following functions have previously been deployed:
 
 - [genefn](https://github.com/dictybase-playground/kubeless-nodefn/tree/master/gene)
@@ -67,7 +67,7 @@ It is also assumed that the following functions have previously been deployed:
 These four were only used to add data to the Redis cache. After installation, they do
 not need to be actively running for any of our software.
 
-# Extra sauce (syncing with upstream chart)
+## Extra sauce (syncing with upstream chart)
 
 The chart in the dictybase `helm repository` is packaged from the
 upstream [repository](https://github.com/helm/charts). To keep it

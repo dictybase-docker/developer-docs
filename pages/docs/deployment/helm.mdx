@@ -4,20 +4,20 @@ section: Deployment
 order: 2
 ---
 
-# Upgrade helm
-It's recommend to upgrade `helm(v2)` to its latest version. As of this
+## Upgrade Helm
+It is recommended to upgrade `Helm(v2)` to its latest version. As of this
 writing upgrade helm to
 [v2.16.9](https://github.com/helm/helm/releases/tag/v2.16.9). After the
-upgarde of helm binary, run
+upgrade of the Helm binary, run
 ```shell
 helm init --upgrade
 ```
-Then wait for 5-6 seconds and check the helm client and server version. They should match each other.
+Then wait for 5-6 seconds and check the Helm client and server version. They should match each other.
 ```shell
 helm version
 ```
 
-# Create/Update update chart in the repository
+## Create/update chart in the repository
 
 - Clone the dictybase helm chart repository
 
