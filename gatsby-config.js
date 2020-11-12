@@ -1,4 +1,5 @@
 module.exports = {
+  pathPrefix: `/developer-docs`,
   plugins: [
     {
       resolve: "smooth-doc",
@@ -11,7 +12,6 @@ module.exports = {
         navItems: [{ title: "Deployment", url: "/docs/deployment/" }],
         githubRepositoryURL:
           "https://github.com/dictybase-docker/developer-docs",
-        baseDirectory: __dirname,
       },
     },
   ],
