@@ -3,11 +3,11 @@
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-![GitHub action](https://github.com/dictybase-docker/developer-docs/workflows/GitHub%20Pages%20build/badge.svg)  
+![GitHub action](https://github.com/dictybase-docker/developer-docs/workflows/GitHub%20Pages%20build/badge.svg)
 [![Maintainability](https://badgen.net/codeclimate/maintainability/dictybase-docker/developer-docs)](https://codeclimate.com/github/dictybase-docker/developer-docs)  
-![Last commit](https://badgen.net/github/last-commit/dictybase-docker/developer-docs/develop)
-[![Funding](https://badgen.net/badge/NIGMS/Rex%20L%20Chisholm,dictyBase/yellow?list=|)](https://projectreporter.nih.gov/project_info_description.cfm?aid=9476993)
-[![Funding](https://badgen.net/badge/NIGMS/Rex%20L%20Chisholm,DSC/yellow?list=|)](https://projectreporter.nih.gov/project_info_description.cfm?aid=9438930)
+![Last commit](https://badgen.net/github/last-commit/dictybase-docker/developer-docs/develop)   
+[![Funding](https://badgen.net/badge/Funding/Rex%20L%20Chisholm,dictyBase,DCR/yellow?list=|)](https://projectreporter.nih.gov/project_info_description.cfm?aid=10024726&icde=0)
+
 
 Static site to display all deployment documentation for dictyBase software. Built using Gatsby.
 
