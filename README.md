@@ -55,11 +55,6 @@ config will generate navbar links automatically.
 It is preferred to use Material-UI for any styling. See examples of the `useStyles` hook in the
 [layout.tsx](./src/components/layout.tsx) file.
 
-### Active Developers
-
-<a href="https://sourcerer.io/cybersiddhu"><img src="https://sourcerer.io/assets/avatar/cybersiddhu" height="80px" alt="Sourcerer"></a>
-<a href="https://sourcerer.io/wildlifehexagon"><img src="https://sourcerer.io/assets/avatar/wildlifehexagon" height="80px" alt="Sourcerer"></a>
-
 ## Contributors ✨
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
