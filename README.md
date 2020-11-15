@@ -4,23 +4,8 @@
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ![GitHub action](https://github.com/dictybase-docker/developer-docs/workflows/GitHub%20Pages%20build/badge.svg)  
-[![Technical debt](https://badgen.net/codeclimate/tech-debt/dictybase-docker/developer-docs)](https://codeclimate.com/github/dictybase-docker/developer-docs/trends/technical_debt)
-[![Issues](https://badgen.net/codeclimate/issues/dictybase-docker/developer-docs)](https://codeclimate.com/github/dictybase-docker/developer-docs/issues)
 [![Maintainability](https://badgen.net/codeclimate/maintainability/dictybase-docker/developer-docs)](https://codeclimate.com/github/dictybase-docker/developer-docs)  
-![Issues](https://badgen.net/github/issues/dictybase-docker/developer-docs)
-![Open Issues](https://badgen.net/github/open-issues/dictybase-docker/developer-docs)
-![Closed Issues](https://badgen.net/github/closed-issues/dictybase-docker/developer-docs)
-![Total PRS](https://badgen.net/github/prs/dictybase-docker/developer-docs)
-![Open PRS](https://badgen.net/github/open-prs/dictybase-docker/developer-docs)
-![Closed PRS](https://badgen.net/github/closed-prs/dictybase-docker/developer-docs)
-![Merged PRS](https://badgen.net/github/merged-prs/dictybase-docker/developer-docs)  
-![Commits](https://badgen.net/github/commits/dictybase-docker/developer-docs/develop)
 ![Last commit](https://badgen.net/github/last-commit/dictybase-docker/developer-docs/develop)
-![Branches](https://badgen.net/github/branches/dictybase-docker/developer-docs)
-![Tags](https://badgen.net/github/tags/dictybase-docker/developer-docs)
-![GitHub repo size](https://img.shields.io/github/repo-size/dictybase-docker/developer-docs?style=plastic)
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/dictybase-docker/developer-docs?style=plastic)
-[![Lines of Code](https://badgen.net/codeclimate/loc/dictybase-docker/developer-docs)](https://codeclimate.com/github/dictybase-docker/developer-docs/code)  
 [![Funding](https://badgen.net/badge/NIGMS/Rex%20L%20Chisholm,dictyBase/yellow?list=|)](https://projectreporter.nih.gov/project_info_description.cfm?aid=9476993)
 [![Funding](https://badgen.net/badge/NIGMS/Rex%20L%20Chisholm,DSC/yellow?list=|)](https://projectreporter.nih.gov/project_info_description.cfm?aid=9438930)
 
@@ -73,3 +58,19 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+
+
+# Misc badges
+![Issues](https://badgen.net/github/issues/dictybase-docker/developer-docs)
+![Open Issues](https://badgen.net/github/open-issues/dictybase-docker/developer-docs)
+![Closed Issues](https://badgen.net/github/closed-issues/dictybase-docker/developer-docs)   
+![Total PRS](https://badgen.net/github/prs/dictybase-docker/developer-docs)
+![Open PRS](https://badgen.net/github/open-prs/dictybase-docker/developer-docs)
+![Closed PRS](https://badgen.net/github/closed-prs/dictybase-docker/developer-docs)
+![Merged PRS](https://badgen.net/github/merged-prs/dictybase-docker/developer-docs)     
+![Commits](https://badgen.net/github/commits/dictybase-docker/developer-docs/develop)
+![Branches](https://badgen.net/github/branches/dictybase-docker/developer-docs)
+![Tags](https://badgen.net/github/tags/dictybase-docker/developer-docs)   
+![GitHub repo size](https://img.shields.io/github/repo-size/dictybase-docker/developer-docs?style=plastic)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/dictybase-docker/developer-docs?style=plastic)
+[![Lines of Code](https://badgen.net/codeclimate/loc/dictybase-docker/developer-docs)](https://codeclimate.com/github/dictybase-docker/developer-docs/code)  
