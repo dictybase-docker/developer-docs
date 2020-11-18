@@ -9,7 +9,7 @@ jobs:
     steps:
       - name: check out code
         uses: actions/checkout@v2
-      - uses: enriikke/gatsby-gh-pages-action@v2
+      - uses: enriikke/gatsby-gh-pages-action@2.1.1
         with:
           access-token: ${{ secrets.GH_TOKEN }}
           deploy-branch: gh-pages
