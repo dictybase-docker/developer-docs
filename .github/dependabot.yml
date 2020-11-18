@@ -4,5 +4,14 @@ updates:
   directory: "/"
   schedule:
     interval: weekly
+    day: saturday
     time: "11:00"
-  open-pull-requests-limit: 10
+    timezone: America/Chicago
+- package-ecosystem: github-actions
+  target-branch: develop
+  directory: "/"
+  schedule:
+    interval: weekly
+    day: saturday
+    time: "11:00"
+    timezone: America/Chicago
