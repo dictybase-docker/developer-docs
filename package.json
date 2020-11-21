@@ -5,7 +5,7 @@
   "version": "0.1.0",
   "author": "Eric Hartline <eric.hartline@northwestern.edu>",
   "dependencies": {
-    "gatsby": "^2.26.1",
+    "gatsby": "^2.27.0",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "smooth-doc": "^5.2.1"
