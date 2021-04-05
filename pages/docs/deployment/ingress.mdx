@@ -4,6 +4,8 @@ section: Deployment
 order: 9
 ---
 
+# Ingress
+
 [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/#what-is-ingress)
 manages external access to services in a Kubernetes cluster. To configure Ingress access we need to install
 
@@ -106,12 +108,14 @@ expected manifests to be deployed.
 The `GraphQL` backend depends on the auth backend, so the auth backend have to be deployed first. [Certificates](/deployment/certificate) has to be installed and configured for secured(https) ingress access.
 
 ## Rule of thumb for writing and deploying ingress manifests
+
 - Use a single `issuer` for all the ingresses in a cluster.
 - Use a single domain for every ingresses. For every new domain, create a new manifests.
 - Every ingress should have a unique tls name within a particular namespace.
 - Try to use a consistent naming for ingresses and tlses.
 
 ## Storage backend
+
 ```yaml
 ingress:
   annotations:
@@ -127,7 +131,9 @@ ingress:
       hosts:
         - siddstorage.dictybase.dev
 ```
+
 ## Auth backend
+
 ```yaml
 ingress:
   annotations:
@@ -145,6 +151,7 @@ ingress:
 ```
 
 ## GraphQL
+
 ```yaml
 ingress:
   annotations:
@@ -162,7 +169,9 @@ ingress:
       hosts:
         - ericgraphql.dictybase.dev
 ```
+
 ## Frontend Applications
+
 ```yaml
 ingress:
   annotations:
@@ -190,7 +199,9 @@ ingress:
       hosts:
         - eric.dictybase.dev
 ```
+
 ## Kubeless
+
 ```yaml
 ingress:
   annotations:

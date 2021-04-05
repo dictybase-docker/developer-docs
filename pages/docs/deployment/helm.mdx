@@ -4,15 +4,23 @@ section: Deployment
 order: 2
 ---
 
+# Helm
+
+We use [Helm charts](https://helm.sh/docs/topics/charts/) to deploy our software.
+
 ## Upgrade Helm
-It is recommended to upgrade `Helm(v2)` to its latest version. As of this
-writing upgrade helm to
-[v2.16.9](https://github.com/helm/helm/releases/tag/v2.16.9). After the
+
+It is recommended to upgrade `Helm (v2)` to its latest version. As of this
+writing upgrade Helm to
+[v2.17.0](https://github.com/helm/helm/releases/tag/v2.17.0). After the
 upgrade of the Helm binary, run
+
 ```shell
 helm init --upgrade
 ```
+
 Then wait for 5-6 seconds and check the Helm client and server version. They should match each other.
+
 ```shell
 helm version
 ```
