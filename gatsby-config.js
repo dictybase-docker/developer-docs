@@ -8,8 +8,11 @@ module.exports = {
         description:
           "All documentation related to developing dictyBase software.",
         siteUrl: "https://dictybase-docker.github.io/developer-docs/",
-        sections: ["Deployment"],
-        navItems: [{ title: "Deployment", url: "/docs/deployment/" }],
+        sections: ["Deployment", "Presentations"],
+        navItems: [
+          { title: "Deployment", url: "/docs/deployment/" },
+          { title: "Presentations", url: "/docs/presentations/" },
+        ],
         githubRepositoryURL:
           "https://github.com/dictybase-docker/developer-docs",
       },
