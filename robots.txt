@@ -1,0 +1,3 @@
+User-agent: *
+Sitemap: https://dictybase-docker.github.io/sitemap.xml
+Host: https://dictybase-docker.github.io
