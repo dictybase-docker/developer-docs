@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Automerge Dependabot
-        uses: ridedott/merge-me-action@v2.8.23
+        uses: ridedott/merge-me-action@v2.9.93
         with:
           GITHUB_LOGIN: dependabot[bot]
           GITHUB_TOKEN: ${{ secrets.WORKFLOW_RUN }}
