@@ -47,7 +47,7 @@ jobs:
       - name: build with Gatsby
         run: yarn build
       - name: upload artifact
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v2
         with:
           path: ./public
   deploy:
