@@ -27,7 +27,7 @@ jobs:
           node-version: "18"
       - name: setup Pages
         id: pages
-        uses: actions/configure-pages@v4
+        uses: actions/configure-pages@v5
         with:
           # Automatically inject pathPrefix in your Gatsby configuration file.
           #
