@@ -13,7 +13,7 @@
   "devDependencies": {
     "@types/react-helmet": "^6.1.11",
     "gh-pages": "^6.1.1",
-    "prettier": "3.3.1"
+    "prettier": "3.3.2"
   },
   "keywords": [
     "gatsby"
